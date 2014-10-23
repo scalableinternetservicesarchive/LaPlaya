@@ -1,12 +1,9 @@
 # LaPlaya
 
-Charlotte Hill
-
-Jasen Hall
-
-Johan Henkens
-
-Kyle Jorgensen
+* Charlotte Hill
+* Jasen Hall
+* Johan Henkens
+* Kyle Jorgensen
 
 
 ## Description:
