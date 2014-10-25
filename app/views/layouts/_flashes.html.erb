@@ -1,0 +1,10 @@
+<div class="alert alert-info" id="runtime_flash" style="display:none;">
+  <span></span>
+</div>
+<% flash.each do |key, value| %>
+    <% klass = alert_class_for_type(key) %>
+    <% if klass %>
+        <%= content_tag(:div, value, class: "alert #{klass}") %>
+    <% end %>
+<% end %>
+<% flash.clear %>
