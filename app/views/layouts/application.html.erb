@@ -17,7 +17,7 @@
 
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
-  <%= content_for?(:one_time_script) ? yield(:one_time_script) : '' %>
+  <%= render 'layouts/custom_css_and_js' %>
 </head>
 <%= render 'layouts/body' %>
 </html>
