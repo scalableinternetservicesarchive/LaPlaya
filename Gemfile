@@ -42,3 +42,4 @@ gem 'spring', group: :development
 
 # Added Gems
 gem 'devise', '~> 3.4.0'
+gem 'paloma', '~> 4.1.0'
