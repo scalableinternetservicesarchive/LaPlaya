@@ -12,6 +12,8 @@ module ApplicationHelper
       'alert-danger'
     elsif %w(alert error).include?(type)
       'alert-success'
+    elsif 'notice' == type
+      'alert-info'
     elsif 'timedout' == type
       nil
     else
@@ -21,6 +23,6 @@ module ApplicationHelper
 
   def controller_classes
     current_path = ''
-    controller_path.split('/').map{|x| (current_path.empty?) ? current_path = x : current_path += '-' + x  }.join(' ')
+    controller_path.split('/').map { |x| (current_path.empty?) ? current_path = x : current_path += '-' + x }.join(' ')
   end
 end
