@@ -4,6 +4,9 @@
 <div id="whole-body">
   <%= render 'layouts/flashes' %>
   <div id="main-body" class="<%= controller_classes %>">
+    <% unless user_signed_in? %>
+        <%= render 'login_modal' %>
+    <% end %>
     <%= yield %>
   </div>
   <%= render 'footer' %>

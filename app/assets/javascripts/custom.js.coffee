@@ -1,23 +1,22 @@
 root = exports ? this
 
-(() ->
-  popupCenter = (url, width, height, name) ->
-    left = (screen.width/2)-(width/2)
-    top = (screen.height/2)-(height/2)
-    window.open(url, name, "menubar=no,toolbar=no,status=no,width="+width+",height="+height+",toolbar=no,left="+left+",top="+top);
+popupCenter = (url, width, height, name) ->
+  left = (screen.width / 2) - (width / 2)
+  top = (screen.height / 2) - (height / 2)
+  window.open(url, name,
+      "menubar=no,toolbar=no,status=no,width=" + width + ",height=" + height + ",toolbar=no,left=" + left + ",top=" + top);
 
-  jQueryDocumentSelectors = () ->
-    $('a[data-popup]').on('click', (e) ->
-      height = $(this).data('popup-options-height') || '400'
-      width = $(this).data('popup-options-height') || '600'
-      name = $(this).data('popup-name') || '_blank'
-      popupCenter($(this.attr('href'), width, height, name))
-      e.stopPropagation()
-      false
-    );
+jQueryDocumentSelectors = () ->
+  $('a[data-popup]').on('click', (e) ->
+    height = $(this).data('popup-options-height') || '400'
+    width = $(this).data('popup-options-width') || '600'
+    name = $(this).data('popup-name') || '_blank'
+    popupCenter($(this).attr('href'), width, height, name)
+    e.stopPropagation()
+    false
+  );
 
-  $(document).ready(jQueryDocumentSelectors)
-)()
+$(document).ready(jQueryDocumentSelectors)
 
 root.solidPortfolio = () ->
   "use strict"
@@ -41,7 +40,7 @@ root.solidPortfolio = () ->
       easing: 'linear',
       queue: false
     },
-    masonry: {
+    masonry:{
     }
   }, refreshWaypoints())
   $('nav.portfolio-filter ul a').on('click', () ->

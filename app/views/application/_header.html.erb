@@ -13,8 +13,6 @@
     <div class="navbar-collapse collapse navbar-right">
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
-            <%= nav_link 'Sign In / Sign Up', new_user_session_path %>
-        <% else %>
             <%= nav_link 'HOME', root_path %>
             <%= nav_link 'ABOUT', '#' %>
             <%= nav_link 'CONTACT', '#' %>
@@ -25,6 +23,8 @@
                            nav_link('SINGLE PROJECT', '#')
                 %>
             <% end %>
+        <% else %>
+            <%= nav_link 'Sign In / Sign Up', nil, {id: 'signin_link', class: 'empty_link', 'data-toggle' => 'modal', 'data-target' => '#registration_modal'} %>
         <% end %>
       </ul>
     </div>

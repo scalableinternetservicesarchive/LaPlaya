@@ -26,10 +26,20 @@ module ApplicationHelper
     controller_path.split('/').map { |x| (current_path.empty?) ? current_path = x : current_path += '-' + x }.join(' ')
   end
 
-  def nav_link(link_text, link_path)
-    class_name = current_page?(link_path) ? 'active' : ''
+  def nav_link(link_text, link_path, link_options = {})
+    class_name = link_path && current_page?(link_path) ? 'active' : ''
     content_tag(:li, :class => class_name) do
-      link_to link_text, link_path
+      if link_path
+        link_to link_text, link_path, link_options
+      else
+        content_tag(:a, link_text, link_options)
+      end
+    end
+  end
+
+  def nav_button(button_text, button_options = {})
+    content_tag(:li) do
+      button_tag button_text, button_options
     end
   end
 
@@ -38,12 +48,12 @@ module ApplicationHelper
     class_name = content.index('active').nil? ? 'dropdown' : 'dropdown active'
     content_tag(:li, class: class_name) do
       (link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
-         (dropdown_text +
-        content_tag(:b, class: 'caret') do
+        (dropdown_text +
+            content_tag(:b, class: 'caret') do
 
-        end).html_safe
+            end).html_safe
       end) +
-      content_tag(:ul, class: 'dropdown-menu', &block)
+          content_tag(:ul, class: 'dropdown-menu', &block)
     end
   end
 end

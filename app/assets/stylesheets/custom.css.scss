@@ -1,5 +1,9 @@
 @import "bootstrap";
 
+a.empty_link {
+  cursor: pointer;
+}
+
 #whole-body {
   margin-top: 36px;
 }
@@ -7,6 +11,12 @@
 @media (max-width: #{$screen-sm-min - 1}){
   #whole-body {
     margin-top: 51px;
+  }
+}
+
+@media (min-width: $screen-sm-min){
+  div.modal-dialog {
+    margin-top: 66px;
   }
 }
 
