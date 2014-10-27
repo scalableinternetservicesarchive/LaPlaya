@@ -18,6 +18,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -39,7 +40,48 @@ gem 'spring', group: :development
 # gem 'debugger', group: [:development, :test]
 
 
-
 # Added Gems
-gem 'devise', '~> 3.4.0'
-gem 'paloma', '~> 4.1.0'
+gem 'devise'
+gem 'paloma'
+gem 'omniauth-facebook'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-clever'
+gem 'prettyphoto-rails'
+gem 'masonry-rails'
+gem 'modernizr-rails'
+gem 'font-awesome-rails'
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
+
+
+group :development, :test do
+  gem 'dotenv-rails', '~> 0.11.1'
+  gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'faker', '~> 1.3.0'
+  gem 'rspec-rails', '~> 3.1'
+  gem 'fuubar', '~> 2.0.0'
+  gem 'rspec-expectations', '~> 3.1'
+  gem 'rspec-its', '~> 1.0.1'
+  gem 'rspec-collection_matchers', '~> 1.0.0'
+  gem 'spork-rails', '~> 4.0.0'
+  gem 'guard-rspec', '~> 4.2.8'
+  gem 'guard-spork', '~> 1.5.1'
+  gem 'childprocess', '~> 0.5.2'
+end
+
+group :development do
+  #Rubymine debugging
+  gem 'ruby-debug-ide'
+  gem 'debase'
+
+  #nice debugging in your browser
+  gem 'better_errors'
+  #allows interpreted ruby while debugging in browser
+  gem 'binding_of_caller'
+  #enables RailsPanel chrome developer addon
+  gem 'meta_request'
+  gem 'rack-mini-profiler'
+end
+
+

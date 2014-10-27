@@ -88,14 +88,17 @@ a:focus {
 	BOOTSTRAP MODIFICATIONS & TWEAKS
 ################################################################# */
 .navbar {
-  min-height: 70px;
-  padding-top: 10px;
+  min-height: 36px;
+  padding-top: 0px;
   margin-bottom: 0px;
 }
 
 .navbar-brand {
   font-family: 'Raleway', sans-serif;
   font-weight: 900;
+  height: inherit;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 .navbar-header .navbar-brand {
@@ -106,6 +109,8 @@ a:focus {
   color: white;
   font-weight: 700;
   font-size: 12px;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
@@ -376,7 +381,7 @@ a:focus {
 
 #blue {
   background: #00b3fe;
-  margin-top: 60px;
+  margin-top: 36px;
   margin-bottom: 60px;
   padding-top: 25px;
   padding-bottom: 25px;
@@ -414,7 +419,7 @@ csmall2 {
 
 /* Contact Page */
 #contactwrap {
-  background: url(../../../../public/solid/img/contact.jpg) no-repeat center top;
+  background: image_url('solid/contact.jpg') no-repeat center top;
   margin-top: -60px;
   padding-top: 0px;
   text-align: center;

@@ -5,6 +5,9 @@
 StaticPagesController = Paloma.controller('StaticPages');
 
 StaticPagesController.prototype.home = () ->
-  alert('helloworld')
 
 
+StaticPagesController.prototype.solid = () ->
+ $(document).ready((() ->
+   solidPortfolio()
+  ))

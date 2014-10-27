@@ -11,7 +11,17 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
+//= require bootstrap
 //= require turbolinks
 //= require paloma
+//= require prettyphoto-rails
+//= require masonry/jquery.masonry
+//= require solid/jquery.isotope.min
+//= require solid/jquery.hoverdir
+//= require solid/jquery.hoverex.min
+//= require solid/retina.min
 //= require_tree .
+
+
