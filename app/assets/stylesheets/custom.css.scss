@@ -1,3 +1,14 @@
+@import "bootstrap";
+
+#whole-body {
+  margin-top: 36px;
+}
+
+@media (max-width: #{$screen-sm-min - 1}){
+  #whole-body {
+    margin-top: 51px;
+  }
+}
 
 .navbar-brand {
   height: inherit !important;
@@ -7,3 +18,38 @@
   min-height: 36px !important;
   padding-top: 0px !important;
 }
+
+div.flashes {
+  position: fixed;
+  z-index: 1000;
+  top: 50px;
+}
+
+@media (min-width: $screen-sm-min){
+  div.flashes {
+    left: calc(50% - #{$container-sm/2});
+  }
+}
+
+@media (min-width: $screen-md-min){
+  div.flashes {
+    left: calc(50% - #{$container-md/2});
+  }
+}
+
+@media (min-width: $screen-lg-min){
+  div.flashes {
+    left: calc(50% - #{$container-lg/2});
+  }
+}
+
+@media (max-width: #{$screen-sm-min - 1}){
+  div.flashes {
+    left: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100%;
+    top: 65px;
+  }
+}
+

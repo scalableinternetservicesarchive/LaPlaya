@@ -1,10 +1,8 @@
 <body <%= content_for?(:body_attributes) ? yield(:body_attributes) : '' %>>
 <%= render 'header' %>
 <%= content_for?(:pre_container) ? yield(:pre_container) : '' %>
-<div>
-  <div class="flashes">
-    <%= render 'layouts/flashes' %>
-  </div>
+<div id="whole-body">
+  <%= render 'layouts/flashes' %>
   <div id="main-body" class="<%= controller_classes %>">
     <%= yield %>
   </div>

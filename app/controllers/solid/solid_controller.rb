@@ -1,6 +1,7 @@
 class Solid::SolidController < ApplicationController
 
   def index
+    flash[:notice] = 'helloworld'
     js :portfolio
   end
 

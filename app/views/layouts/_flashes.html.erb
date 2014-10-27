@@ -1,10 +1,20 @@
-<div class="alert alert-info" id="runtime_flash" style="display:none;">
-  <span></span>
+<div class="flashes container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <div class="alert alert-info" id="runtime_flash" style="display:none;">
+        <span></span>
+      </div>
+      <% flash.each do |key, value| %>
+          <% klass = alert_class_for_type(key) %>
+          <% if klass %>
+              <%= content_tag(:div, class: "alert alert-dismissible #{klass} fade in") do %>
+                  <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <%= value %>
+              <% end %>
+          <% end %>
+      <% end %>
+      <% flash.clear %>
+    </div>
+  </div>
 </div>
-<% flash.each do |key, value| %>
-    <% klass = alert_class_for_type(key) %>
-    <% if klass %>
-        <%= content_tag(:div, value, class: "alert #{klass}") %>
-    <% end %>
-<% end %>
-<% flash.clear %>
