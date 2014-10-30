@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
   respond_to :html, :json
 
   def index
+    @projects = Project.all
   end
 
   def new
@@ -11,6 +12,20 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    @project = Project.new(project_params)
+
+    #set the user
+
+    respond_to do |format|
+      if @project.save
+        format.html {redirect_to @project, notice: 'Project was successfully created'}
+        format.json {render :show, status: :created, location: @project }
+      else
+        format.html { render :new }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
 
   def show
@@ -20,9 +35,14 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    flash[:notice] = "#{@project.title} was successfully updated." if @project.update(project_params)
+    respond_with(@project)
   end
 
   def destroy
+    @project.destroy
+    flash[:notice] = "#{@project.title} was successfully destroyed."
+    respond_with @project
   end
 
   private
@@ -32,7 +52,7 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:title, :content)
+      params.require(:project).permit(:title, :instructions, :about, :thumbnail)
     end
 
 end

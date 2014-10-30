@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20141030020749) do
     t.string   "title"
     t.text     "about"
     t.text     "instructions"
-    t.string   "content"
+    t.string   "thumbnail"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
