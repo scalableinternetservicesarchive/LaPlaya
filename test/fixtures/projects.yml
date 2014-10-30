@@ -4,10 +4,10 @@ one:
   title: MyString
   about: MyText
   instructions: MyText
-  content: MyString
+  thumbnail: MyString
 
 two:
   title: MyString
   about: MyText
   instructions: MyText
-  content: MyString
+  thumbnail: MyString
