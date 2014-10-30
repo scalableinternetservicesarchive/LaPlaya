@@ -4,7 +4,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :title
       t.text :about
       t.text :instructions
-      t.string :content
+      t.string :thumbnail
 
       t.timestamps
     end

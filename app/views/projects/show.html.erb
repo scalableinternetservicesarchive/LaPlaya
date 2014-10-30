@@ -1,2 +1,13 @@
-<h1>Projects#show</h1>
-<p>Find me in app/views/projects/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<h3>Project</h3>
+<p><%= @project.title %></p>
+<p><%= @project.about %></p>
+<p><%= @project.instructions %></p>
+<p><%= @project.thumbnail %></p>
+
+
+<%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-warning btn-small' %>
+<%= link_to 'Destroy', @project, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Back', projects_path, class: 'btn btn-default' %>
+
