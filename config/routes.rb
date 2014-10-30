@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'projects/create'
+
+  get 'projects/show'
+
+  get 'projects/destroy'
+
   get 'projects/index'
 
   get 'projects/new'
