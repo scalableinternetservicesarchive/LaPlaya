@@ -49,9 +49,7 @@ module ApplicationHelper
     content_tag(:li, class: class_name) do
       (link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
         (dropdown_text +
-            content_tag(:b, class: 'caret') do
-
-            end).html_safe
+            content_tag(:b, nil, class: 'caret')).html_safe
       end) +
           content_tag(:ul, class: 'dropdown-menu', &block)
     end
