@@ -1,17 +1,21 @@
-class Users::RegistrationsController < Devise::SessionsController
+class Users::RegistrationsController < Devise::RegistrationsController
+  before_filter :configure_permitted_parameters
+  respond_to :json, :js, only: [:create]
+
+  def preregistration
+    respond_to do |format|
+      format.js do
+        js false
+        session['devise.preregistration'] = params.require(:user).permit(:email,:password,:password_confirmation)
+      end
+    end
+  end
 
   def check_username
     respond_to do |format|
       format.json do
         username = params[:username]
-        response = {username: username}
-        if username_is_valid?(username, response)
-          if User.where(username: username).count == 0
-            response[:status] = :available
-          else
-            response[:status] = :taken
-          end
-        end
+        render json: User.username_is_valid?(username)
       end
     end
   end
@@ -20,36 +24,68 @@ class Users::RegistrationsController < Devise::SessionsController
     respond_to do |format|
       format.json do
         email = params[:email]
-        response = {email: email}
-        if email_is_valid?(email, response)
-          if User.where(email: email).count == 0
-            response[:status] = :available
-          else
-            response[:status] = :taken
-          end
-        end
-        render json: response
+        render json: User.email_is_valid?(email)
       end
     end
   end
 
-  private
-  def username_is_valid?(username, response)
-    if username.blank?
-      response[:status] = :blank
-      false
-    else
-      true
+  def check_password
+    respond_to do |format|
+      format.json do
+        password = params[:password]
+        render json: User.password_is_valid?(password)
+      end
     end
   end
 
-  def email_is_valid?(email, response)
-    if email.blank?
-      response[:status] = :blank
-      false
+  def create
+    build_resource(sign_up_params)
+
+    resource_saved = resource.save
+    yield resource if block_given?
+    if resource_saved
+      if resource.active_for_authentication?
+        set_flash_message :notice, :signed_up if is_flashing_format?
+        sign_up(resource_name, resource)
+        render js: "window.location=\"#{after_sign_up_path_for(resource)}\";"
+      else
+        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
+        expire_data_after_sign_in!
+        render js: "window.location=\"#{after_inactive_sign_up_path_for(resource)}\";"
+      end
     else
-      true
+      clean_up_passwords resource
+      @validatable = devise_mapping.validatable?
+      if @validatable
+        @minimum_password_length = resource_class.password_length.min
+      end
+      respond_to do |format|
+        format.js do
+          @new_user = resource
+          js false
+          render status: 422
+        end
+        format.json do
+          respond_with resource
+        end
+      end
     end
   end
+
+
+  private
+  def sign_up_params
+    params = super.to_hash
+    prereg_params = session['devise.preregistration']
+    if prereg_params.is_a? Hash
+      params.reverse_merge!(prereg_params)
+    end
+    params
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up).push(:username)
+  end
+
 
 end

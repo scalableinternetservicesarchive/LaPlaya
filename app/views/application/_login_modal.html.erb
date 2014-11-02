@@ -6,62 +6,71 @@
           <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title signin">Sign in...</h4>
         <h4 class="modal-title signup hidden">Sign up...</h4>
+        <h4 class="modal-title finish-signup hidden">Choose a username...</h4>
       </div>
       <div class="modal-body">
-        <div>
-          <%= render partial: 'login_button',
-                     locals: {
-                             path: user_omniauth_authorize_path(:facebook),
-                             link_options: {
-                                     class: 'btn btn-block btn-social btn-facebook',
-                                     'data-popup' => true
-                             },
-                             icon_class: 'fa fa-facebook',
-                             link_text: 'with Facebook'} %>
-          <%= render partial: 'login_button',
-                     locals: {
-                             path: user_omniauth_authorize_path(:google_oath2),
-                             link_options: {
-                                     class: 'btn btn-block btn-social btn-google-plus',
-                                     'data-popup' => true
-                             },
-                             icon_class: 'fa fa-google-plus',
-                             link_text: 'with Google'} %>
-          <%= render partial: 'login_button',
-                     locals: {
-                             path: '#',
-                             link_options: {
-                                     class: 'btn btn-block btn-social btn-github',
-                                     'data-popup' => true
-                             },
-                             icon_class: 'fa fa-github',
-                             link_text: 'with Github'} %>
-          <%= render partial: 'login_button',
-                     locals: {
-                             path: '#',
-                             link_options: {
-                                     class: 'btn btn-block btn-social btn-clever',
-                                     'data-popup' => true
-                             },
-                             icon_class: 'icon-laplaya-clever',
-                             link_text: 'with Clever'} %>
+        <div class="signin signup">
+          <div>
+
+            <%= render partial: 'login_button',
+                       locals: {
+                               path: user_omniauth_authorize_path(:facebook),
+                               link_options: {
+                                       class: 'btn btn-block btn-social btn-facebook',
+                                       'data-popup' => true
+                               },
+                               icon_class: 'fa fa-facebook',
+                               link_text: 'with Facebook'} %>
+            <%= render partial: 'login_button',
+                       locals: {
+                               path: user_omniauth_authorize_path(:google_oath2),
+                               link_options: {
+                                       class: 'btn btn-block btn-social btn-google-plus',
+                                       'data-popup' => true
+                               },
+                               icon_class: 'fa fa-google-plus',
+                               link_text: 'with Google'} %>
+            <%= render partial: 'login_button',
+                       locals: {
+                               path: '#',
+                               link_options: {
+                                       class: 'btn btn-block btn-social btn-github',
+                                       'data-popup' => true
+                               },
+                               icon_class: 'fa fa-github',
+                               link_text: 'with Github'} %>
+            <%= render partial: 'login_button',
+                       locals: {
+                               path: '#',
+                               link_options: {
+                                       class: 'btn btn-block btn-social btn-clever',
+                                       'data-popup' => true
+                               },
+                               icon_class: 'icon-laplaya-clever',
+                               link_text: 'with Clever'} %>
+          </div>
+          <hr>
+          <div class="signin">
+            <%= render partial: 'signin_form' %>
+          </div>
+          <div class="signup hidden">
+            <%= render partial: 'signup_email_form' %>
+          </div>
+          <hr>
+          <div id="sign_up_switcher">
+            <a class="empty-link signin">Don't have an account? Create one today!</a>
+            <a class="empty-link signup hidden">Already have an account?</a>
+          </div>
         </div>
-        <hr>
-        <div class="signin">
-          <%= render partial: 'signin_form' %>
-        </div>
-        <div class="signup hidden">
-          <%= render partial: 'signup_email_form' %>
-        </div>
-        <hr>
-        <div id="sign_up_switcher">
-          <a class="empty-link signin">Don't have an account? Create one today!</a>
-          <a class="empty-link signup hidden">Already have an account?</a>
+        <div class="finish-signup hidden">
+          <%= render partial: 'signup_finish' %>
         </div>
       </div>
       <div class="modal-footer">
         <input type="submit" form="signin-form" class="btn btn-primary signin" value="Sign in"/>
-        <input type="submit" form="signup-email-form" class="btn btn-primary signup hidden" value="Next..."/>
+        <input id="email-signup-button" type="submit" form="signup-email-form" class="btn btn-primary signup hidden" value="Next..."/>
+        <button id="cancel-signup" class="btn btn-default finish-signup hidden">Back</button>
+        <input id="finish-signup-button" type="submit" form="finish-signup-form" class="btn btn-primary finish-signup hidden" value="Sign up!"/>
       </div>
     </div>
     <!-- /.modal-content -->

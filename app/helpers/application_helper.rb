@@ -44,6 +44,7 @@ module ApplicationHelper
   end
 
   def nav_dropdown(dropdown_text, &block)
+    dropdown_text ||= ''
     content = capture(&block)
     class_name = content.index('active').nil? ? 'dropdown' : 'dropdown active'
     content_tag(:li, class: class_name) do

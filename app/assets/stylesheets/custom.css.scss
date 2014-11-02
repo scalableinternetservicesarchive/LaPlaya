@@ -56,6 +56,17 @@ form.compact-form {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
+
+  div.alert {
+    li {
+      margin-left: 20px;
+    }
+  }
+
+  form span.help-block {
+    display: none;
+  }
+
 }
 
 #super-admin-panel {

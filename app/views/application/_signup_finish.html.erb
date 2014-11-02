@@ -1,0 +1,14 @@
+<h5>
+  You are almost done...
+</h5>
+<p>
+  Pick your new username...
+</p>
+<%= semantic_form_for @new_user || User.new, url: user_registration_path, html: {
+                                                   id: 'finish-signup-form',
+                                                   class: 'compact-form',
+                                                   remote: true
+                                           } do |f| %>
+    <%= f.semantic_errors :email, :password, :password_confirmation, :provider, :uid, :username %>
+    <%= f.input :username, placeholder: 'username', label: false %>
+<% end %>
