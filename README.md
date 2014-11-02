@@ -23,3 +23,14 @@ We want to design a website similar to Scratch's (http://scratch.mit.edu/) for s
 
 ## Pivotal Tracker
 https://www.pivotaltracker.com/n/projects/1193874
+
+### Workflow
+
+| Pivotal action | Corresponds to |
+|:--------------:|----------------|
+| *Start* | Beginning to work on the code for that story |
+| *Finish* | The features have been implemented for this story |
+| *Deliver* | Pull request submitted, awaiting code review from a teammate |
+| *Accept* or *Reject* | Code reviewer selects the appropriate action after reviewing the pull request |
+
+
