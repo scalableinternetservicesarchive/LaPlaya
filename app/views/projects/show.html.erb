@@ -6,8 +6,20 @@
 <p><%= @project.instructions %></p>
 <p><%= @project.thumbnail %></p>
 
-
 <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-warning btn-small' %>
 <%= link_to 'Destroy', @project, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>
 <%= link_to 'Back', projects_path, class: 'btn btn-default' %>
 
+<h3>Comments</h3>
+
+<%	if @project.comments.length > 0 %>
+    <ul>
+      <% @project.comments.each do |comment| %>
+          <!-- TODO add usernames -->
+        <li><%=  comment.text %></li>
+      <% end %>
+    </ul>
+    <% else %>
+    <em>No comments yet</em><br/>
+    <%= link_to 'Leave a comment', new_comment_path %>
+<%  end %>

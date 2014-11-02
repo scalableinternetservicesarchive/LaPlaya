@@ -1,0 +1,21 @@
+<!-- <p id="notice"><%= notice %></p> -->
+
+<p>
+  <strong>Text:</strong>
+  <%= @comment.text %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= link_to @comment.project.title, @comment.project if @comment.project %>
+</p>
+
+<p>
+  <% unless @comment.parent.nil? %>
+    <%= link_to "Parent comment", @comment.parent %>
+  <% else %>
+    <%= "This is a root comment" %>
+  <% end %>
+</p>
+
+<%= link_to 'Back', comments_path %>

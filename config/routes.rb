@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :projects
   devise_for :users, controllers: {omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions'}
+
+  resources :comments, only: [:index, :new, :create, :show, :destroy]
+
   root 'static_pages#home'
   namespace 'solid' do
     get 'index', to: 'solid#index'

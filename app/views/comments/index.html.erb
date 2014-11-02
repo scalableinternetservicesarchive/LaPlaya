@@ -1,0 +1,28 @@
+<h1>Listing comments</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Text</th>
+    <th>Project</th>
+    <th>Has Parent</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.text %></td>
+        <td><%= link_to comment.project.title, comment.project if comment.project %></td>
+        <td><%= comment.parent ? 'true' : 'false' %></td>
+        <td><%= link_to 'Show', comment, class: 'btn btn-info btn-sm' %></td>
+        <td><%= link_to 'Destroy', comment, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Comment', new_comment_path, class: 'btn btn-success btn-sm' %>
