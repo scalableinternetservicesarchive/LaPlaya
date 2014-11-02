@@ -1,0 +1,11 @@
+<div class="admin-panel hidden" id="super-admin-panel">
+  <script type="application/javascript">
+    $(document).on('keydown', null, 'alt+a', function(){
+        $('#super-admin-panel').toggleClass('hidden');
+    });
+  </script>
+  <h5>Super Admin Panel</h5>
+  <div>
+    <%= switch_user_select %>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 @import "bootstrap/variables";
 
-a.empty_link {
+a.empty-link {
   cursor: pointer;
 }
 
@@ -8,13 +8,76 @@ a.empty_link {
   margin-top: 36px;
 }
 
-@media (max-width: #{$screen-sm-min - 1}){
+form.compact-form {
+  .heading {
+    margin-bottom: 10px;
+  }
+  .form-control {
+    position: relative;
+    height: auto;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+    &:focus {
+      z-index: 2;
+    }
+  }
+  div.form-group {
+    &.top {
+      margin-bottom: -1px;
+      input {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+    &.middle {
+      margin-bottom: -1px;
+      input {
+        border-radius: 0;
+      }
+    }
+    &.bottom {
+      margin-bottom: 10px;
+      input {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+    .form-control-feedback {
+      padding-top: 4px;
+    }
+  }
+}
+
+#registration_modal {
+
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+#super-admin-panel {
+  position: fixed;
+  background: white;
+  display: block;
+  bottom: 0;
+  right: 0;
+  min-width: 250px;
+  min-height: 100px;
+  border-top-left-radius: 12px;
+  border-style: solid none none solid;
+  border-width: 1px;
+}
+
+@media (max-width: #{$screen-sm-min - 1}) {
   #whole-body {
     margin-top: 51px;
   }
 }
 
-@media (min-width: $screen-sm-min){
+@media (min-width: $screen-sm-min) {
   div.modal-dialog {
     margin-top: 66px;
   }
@@ -35,25 +98,25 @@ div.flashes {
   top: 50px;
 }
 
-@media (min-width: $screen-sm-min){
+@media (min-width: $screen-sm-min) {
   div.flashes {
     left: calc(50% - #{$container-sm/2});
   }
 }
 
-@media (min-width: $screen-md-min){
+@media (min-width: $screen-md-min) {
   div.flashes {
     left: calc(50% - #{$container-md/2});
   }
 }
 
-@media (min-width: $screen-lg-min){
+@media (min-width: $screen-lg-min) {
   div.flashes {
     left: calc(50% - #{$container-lg/2});
   }
 }
 
-@media (max-width: #{$screen-sm-min - 1}){
+@media (max-width: #{$screen-sm-min - 1}) {
   div.flashes {
     left: 0px;
     margin-left: 5px;

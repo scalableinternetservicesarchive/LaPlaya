@@ -1,0 +1,16 @@
+<u>Login as another user</u>
+<%= form_tag users_switch_user_path, method: :get, class: 'form' do %>
+    <div class="form-group">
+      <%= label_tag 'scope_identifier', 'User', class: 'sr-only' %>
+      <%= select_tag 'scope_identifier', options_from_collection_for_select(options, :scope_id, :label, current_scope), class: 'form-control' %>
+    </div>
+    <% if SwitchUser.switch_back %>
+        <div class="checkbox">
+          <%= label_tag 'remember' do %>
+              <% concat check_box_tag 'remember', 'true', provider.original_user.present? %>
+              <% concat 'Log me back in when I am done' %>
+          <% end %>
+        </div>
+    <% end %>
+    <button type="submit" class="btn btn-default">Switch to User</button>
+<% end %>

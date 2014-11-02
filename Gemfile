@@ -39,20 +39,36 @@ gem 'spring', group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-
 # Added Gems
+#Authentication
 gem 'devise'
-gem 'paloma'
+gem 'switch_user', github: 'jhenkens/switch_user', branch: 'master'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-clever'
-gem 'prettyphoto-rails'
+
+#Javascript isolation
+gem 'paloma'
+
+#Allow us to do global hotkeys in our site (admin user switcher for example)
+gem 'jquery-hotkeys-rails'
+
+
 gem 'masonry-rails'
 gem 'modernizr-rails'
+
+#Pretty stuff
 gem 'font-awesome-rails'
+gem 'prettyphoto-rails'
 gem 'bootstrap-sass'
+gem 'formtastic'
+gem 'formtastic-bootstrap'
+gem 'bootstrap-validator-rails'
+
 gem 'autoprefixer-rails'
+
+
 
 
 group :development, :test do

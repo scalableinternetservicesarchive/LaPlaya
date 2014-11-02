@@ -22,6 +22,8 @@
 //= require solid/jquery.hoverdir
 //= require solid/jquery.hoverex.min
 //= require solid/retina.min
+//= require bootstrapValidator.min
+//= require jquery-hotkeys
 //= require_tree .
 
 

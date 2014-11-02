@@ -23,8 +23,11 @@
                            nav_link('SINGLE PROJECT', '#')
                 %>
             <% end %>
+            <%= nav_dropdown current_user.username do %>
+                <%= nav_link 'Sign Out', destroy_user_session_path, method: :delete %>
+            <% end %>
         <% else %>
-            <%= nav_link 'Sign In / Sign Up', nil, {id: 'signin_link', class: 'empty_link', 'data-toggle' => 'modal', 'data-target' => '#registration_modal'} %>
+            <%= nav_link 'Sign In / Sign Up', nil, {id: 'signin_link', class: 'empty-link', 'data-toggle' => 'modal', 'data-target' => '#registration_modal'} %>
         <% end %>
       </ul>
     </div>

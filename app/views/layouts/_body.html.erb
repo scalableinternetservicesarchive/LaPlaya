@@ -4,13 +4,17 @@
 <div id="whole-body">
   <%= render 'layouts/flashes' %>
   <div id="main-body" class="<%= controller_classes %>">
-    <% unless user_signed_in? %>
-        <%= render 'login_modal' %>
-    <% end %>
     <%= yield %>
   </div>
   <%= render 'footer' %>
   <%= debug(params) if Rails.env.development? %>
 </div>
+<% if user_signed_in? %>
+    <% if current_user.super_admin? %>
+        <%= render 'application/admin_panel' %>
+    <% end %>
+<% else %>
+    <%= render 'application/login_modal' %>
+<% end %>
 </body>
 
