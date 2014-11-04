@@ -23,7 +23,7 @@
                            nav_link('SINGLE PROJECT', '#')
                 %>
             <% end %>
-            <%= nav_dropdown (current_user.username || current_user.id.to_s ) do %>
+            <%= nav_dropdown current_user.username do %>
                 <%= nav_link 'Sign Out', destroy_user_session_path, method: :delete %>
             <% end %>
         <% else %>
