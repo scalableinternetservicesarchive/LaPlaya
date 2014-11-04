@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :destroy]
-  #before_action :authenticate_user!, only: [:create, :edit, :new, :update]
+  before_action :authenticate_user!, only: [:create, :new, :destroy]
 
   def index
     @comments = Comment.all
@@ -14,9 +14,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    #@project = Project.find(params[:project_id])
-    #@comment.user = current_user
-    #@comment.project = @project
+    @comment.user = current_user
 
     respond_to do |format|
       if @comment.save
