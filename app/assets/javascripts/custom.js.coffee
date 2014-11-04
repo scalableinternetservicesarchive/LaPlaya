@@ -51,7 +51,6 @@ jQueryDocumentSelectors = () ->
     if temp && temp.is(':visible')
       from_form = temp
 
-    root.switchSigninModalToClass = switchToClass
 
     modal.find(classes).each(()->
       unless $(this).hasClass(klass)
@@ -67,8 +66,13 @@ jQueryDocumentSelectors = () ->
         $(this).find('input.password').val(from_form.find('input.password').val())
       )
 
+  root.switchSigninModalToClass = switchToClass
+
   modal.on('show.bs.modal', (e) ->
     switchToClass('signin')
+    modal.find('form').each(->
+      this.reset()
+    )
   )
   modal.find('#cancel-signup').click(->
     switchToClass('signup')
