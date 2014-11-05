@@ -17,3 +17,5 @@ public/system
 
 # AWS keys
 *.pem
+
+Gemfile.lock
