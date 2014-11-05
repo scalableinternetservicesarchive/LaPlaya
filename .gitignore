@@ -14,3 +14,6 @@ doc/
 node_modules
 public/assets
 public/system
+
+# AWS keys
+*.pem
