@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 #ruby '2.1.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', group: :development
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -69,6 +68,7 @@ gem 'autoprefixer-rails'
 
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'dotenv-rails', '~> 0.11.1'
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'faker', '~> 1.3.0'
