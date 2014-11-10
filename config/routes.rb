@@ -2,12 +2,19 @@ Rails.application.routes.draw do
   resources :galleries
 
   resources :projects do
-    member do
+    resources :comments, only: [:create, :destroy] do
+      collection do
+        get 'new/(:parent_id)', to: 'comments#new', as: 'new'
+      end
+    end
+  member do
       post 'like'
       delete 'unlike'
     end
 
   end
+  get 'projects/:id/comments/:comment_id', to: 'projects#show', as: 'project_comment_show'
+
   devise_for :users,
              controllers: {
                  omniauth_callbacks: 'users/omniauth_callbacks',
@@ -15,8 +22,6 @@ Rails.application.routes.draw do
                  registrations: 'users/registrations'
              },
              skip: [:registrations]
-
-resources :comments, only: [:index, :new, :create, :show, :destroy]
 
 
   root 'static_pages#home'

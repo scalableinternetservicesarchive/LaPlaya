@@ -12,10 +12,11 @@
 
 <p>
   <% unless @comment.parent.nil? %>
-    <%= link_to "Parent comment", @comment.parent %>
+    <%= link_to "Parent comment", project_comment_path(@comment.parent.project, @comment.parent) %>
   <% else %>
     <%= "This is a root comment" %>
   <% end %>
 </p>
+<%= link_to 'Reply to this comment', new_project_comments_path(@comment.project,@comment) %>
 
-<%= link_to 'Back', comments_path %>
+<%= link_to 'Back', project_comments_path %>

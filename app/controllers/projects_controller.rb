@@ -26,8 +26,8 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html {redirect_to @project, notice: 'Project was successfully created'}
-        format.json {render :show, status: :created, location: @project }
+        format.html { redirect_to @project, notice: 'Project was successfully created' }
+        format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
         format.json { render json: @project.errors, status: :unprocessable_entity }
@@ -58,6 +58,15 @@ class ProjectsController < ApplicationController
 
   def show
     @liked = current_user && @project.liking_users.include?(current_user)
+    @comments = @project.root_comments
+    if params[:comment_id]
+      @comment = Comment.find(params[:comment_id])
+      if @comment.project == @project
+        @comments = [@comment]
+      else
+        flash[:notice] = "Invalid comment id"
+      end
+    end
   end
 
   def edit
@@ -75,8 +84,9 @@ class ProjectsController < ApplicationController
   end
 
   private
-    def project_params
-      params.require(:project).permit(:title, :instructions, :about, :thumbnail)
-    end
+
+  def project_params
+    params.require(:project).permit(:title, :instructions, :about, :thumbnail)
+  end
 
 end

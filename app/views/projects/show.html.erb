@@ -30,6 +30,26 @@
       <p>
         <%= @project.about %>
       </p>
+      <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-warning btn-small' %>
+      <%= link_to 'Destroy', @project, class: 'btn btn-danger btn-sm', method: :delete, data: {confirm: 'Are you sure?'} %>
+      <%= link_to 'Back', projects_path, class: 'btn btn-default' %>
+
+      <div id="comments">
+        <h3>Comments</h3>
+
+        <%= comment_return_link %>
+
+        <% if @comments.any? %>
+            <div>
+              <%= render partial: 'comment', collection: @comments %>
+            </div>
+        <% else %>
+            <em>No comments yet</em><br/>
+        <% end %>
+        <br/>
+        <%= link_to 'Leave a comment', new_project_comments_path(@project), class: 'btn btn-primary btn-m' %>
+
+      </div>
     </div>
 
     <div class="col-lg-4 col-lg-offset-1">

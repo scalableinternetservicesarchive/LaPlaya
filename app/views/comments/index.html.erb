@@ -16,8 +16,8 @@
         <td><%= comment.text %></td>
         <td><%= link_to comment.project.title, comment.project if comment.project %></td>
         <td><%= comment.parent ? 'true' : 'false' %></td>
-        <td><%= link_to 'Show', comment, class: 'btn btn-info btn-sm' %></td>
-        <td><%= link_to 'Destroy', comment, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', project_comment_path(comment.project, comment), class: 'btn btn-info btn-sm' %></td>
+        <td><%= link_to 'Destroy', project_comment_path(comment.project, comment), class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   <% end %>
   </tbody>
@@ -25,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Comment', new_comment_path, class: 'btn btn-success btn-sm' %>
+<%= link_to 'New Comment', new_project_comments_path, class: 'btn btn-success btn-sm' %>
