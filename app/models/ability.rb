@@ -1,15 +1,27 @@
 class Ability
   include CanCan::Ability
 
+  RESTFUL_ACTIONS = [:show, :index, :create, :new, :update, :edit, :destroy]
+
   def initialize(user)
     # Define abilities for the passed in user here. For example:
-
-       user ||= User.new # guest user (not logged in)
-#       if user.admin?
-#         can :manage, :all
-#       else
-         can :read, :all
-#       end
+    can :read, Project
+    can :read, Gallery
+    can :read, Comment
+    alias_action :read, :update, :destroy, to: :rud
+    if user
+      if user.super_admin?
+        can :manage, :all
+      end
+      #Can create a new Project/Gallery/Comment
+      can :create, Project
+      can :create, Gallery
+      can :create, Comment
+      #Can 'rud', aka, read update destroy, their own projects/galleries/comments
+      can :rud, Project, user_id: user.id
+      can :rud, Gallery, user_id: user.id
+      can :rud, Comment, user_id: user.id
+    end
 
     # The first argument to `can` is the action you are giving the user
     # permission to do.

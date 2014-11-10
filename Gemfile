@@ -41,12 +41,11 @@ gem 'spring', group: :development
 # Added Gems
 #Authentication
 gem 'devise'
-gem 'switch_user', github: 'jhenkens/switch_user', branch: 'master'
 gem 'omniauth-facebook'
-gem 'omniauth-github'
+# gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
-gem 'omniauth-clever'
-gem 'cancancan', '~> 1.9.2'
+# gem 'omniauth-clever', github: 'code-dot-org/omniauth-clever', branch: 'master'
+gem 'cancancan'
 
 #Javascript isolation
 gem 'paloma'
@@ -78,9 +77,6 @@ group :development, :test do
   gem 'rspec-expectations', '~> 3.1'
   gem 'rspec-its', '~> 1.0.1'
   gem 'rspec-collection_matchers', '~> 1.0.0'
-  gem 'spork-rails', '~> 4.0.0'
-  gem 'guard-rspec', '~> 4.2.8'
-  gem 'guard-spork', '~> 1.5.1'
   gem 'childprocess', '~> 0.5.2'
 end
 

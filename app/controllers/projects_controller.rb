@@ -1,5 +1,13 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  #Verify that every action is 'authorized', otherwise throw an exception
+  check_authorization
+  #Will automatically do the equivalent of 'set project' for us
+  load_resource
+  #Will perform 'authorize! action_name, @project' for all the basic actions
+  #We can manually call authorize! in any non-RESTful actions we make, using one of the restful actions as its check
+  authorize_resource only: Ability::RESTFUL_ACTIONS
+
+
   respond_to :html, :json
 
   def index
@@ -46,11 +54,6 @@ class ProjectsController < ApplicationController
   end
 
   private
-
-    def set_project
-      @project = Project.find(params[:id])
-    end
-
     def project_params
       params.require(:project).permit(:title, :instructions, :about, :thumbnail)
     end

@@ -1,24 +1,124 @@
+<% provide :title, @project.title %>
 
-<h3>Project</h3>
-<p><%= @project.title %></p>
-<p><%= @project.about %></p>
-<p><%= @project.instructions %></p>
-<p><%= @project.thumbnail %></p>
+<!-- *****************************************************************************************************************
+ BLUE WRAP
+ ***************************************************************************************************************** -->
+<div id="blue">
+  <div class="container">
+    <div class="row">
+      <h3><%= @project.title %></h3>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div><!-- /blue -->
 
-<%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-warning btn-small' %>
-<%= link_to 'Destroy', @project, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Back', projects_path, class: 'btn btn-default' %>
+<!-- *****************************************************************************************************************
+ TITLE & CONTENT
+ ***************************************************************************************************************** -->
 
-<h3>Comments</h3>
+<div class="container mt">
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1 centered">
+      <%= image_tag @project.thumbnail, class: 'img-responsive' %>
+    </div>
 
-<%	if @project.comments.length > 0 %>
-    <ul>
-      <% @project.comments.each do |comment| %>
-          <!-- TODO add usernames -->
-        <li><%=  comment.text %></li>
-      <% end %>
-    </ul>
-    <% else %>
-    <em>No comments yet</em><br/>
-    <%= link_to 'Leave a comment', new_comment_path %>
-<%  end %>
+    <div class="col-lg-5 col-lg-offset-1">
+      <div class="spacing"></div>
+      <h3><%= @project.title %></h3>
+
+      <p>
+        <%= @project.about %>
+      </p>
+    </div>
+
+    <div class="col-lg-4 col-lg-offset-1">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="spacing"></div>
+          <h4>Instructions</h4>
+
+          <div class="hline"></div>
+          <p>
+            <%= @project.instructions %>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="spacing"></div>
+          <h4>Project Details</h4>
+
+          <div class="hline"></div>
+          <p><b>Created:</b> <%= @project.created_at %></p>
+
+          <p><b>Last Modified:</b> <%= @project.updated_at %></p>
+
+          <p><b>Author:</b> <%= @project.user.username %></p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <! --/row -->
+</div><! --/container -->
+
+<!-- *******************************V**********************************************************************************
+ PORTFOLIO SECTION
+ ***************************************************************************************************************** -->
+<div id="portfoliowrap">
+  <div class="portfolio-centered">
+    <h3>Related Works.</h3>
+
+    <div class="recentitems portfolio">
+      <%= render partial: 'application/solid_portfolio_item',
+                 locals: {
+                         title: 'A Graphic Design Item',
+                         thumb_url: '/solid/img/portfolio/portfolio_09.jpg',
+                         full_size_url: '/solid/img/portfolio/portfolio_09.jpg',
+                         link_url: '/solid/single-project.html'
+
+                 } %>
+      <%= render partial: 'application/solid_portfolio_item',
+                 locals: {
+                         title: 'A Web Design Item',
+                         thumb_url: '/solid/img/portfolio/portfolio_02.jpg',
+                         full_size_url: '/solid/img/portfolio/portfolio_02.jpg',
+                         link_url: '/solid/single-project.html'
+
+                 } %>
+      <%= render partial: 'application/solid_portfolio_item',
+                 locals: {
+                         title: 'A Graphic Design Item',
+                         thumb_url: '/solid/img/portfolio/portfolio_03.jpg',
+                         full_size_url: '/solid/img/portfolio/portfolio_03.jpg',
+                         link_url: '/solid/single-project.html'
+
+                 } %>
+
+      <%= render partial: 'application/solid_portfolio_item',
+                 locals: {
+                         title: 'A Graphic Design Item',
+                         thumb_url: '/solid/img/portfolio/portfolio_04.jpg',
+                         full_size_url: '/solid/img/portfolio/portfolio_04.jpg',
+                         link_url: '/solid/single-project.html'
+
+                 } %>
+
+      <%= render partial: 'application/solid_portfolio_item',
+                 locals: {
+                         title: 'A Graphic Design Item',
+                         thumb_url: '/solid/img/portfolio/portfolio_05.jpg',
+                         full_size_url: '/solid/img/portfolio/portfolio_05.jpg',
+                         link_url: '/solid/single-project.html'
+
+                 } %>
+
+    </div>
+    <!-- portfolio -->
+  </div>
+  <!-- portfolio container -->
+</div><!--/Portfoliowrap -->
+	 
+	 	 

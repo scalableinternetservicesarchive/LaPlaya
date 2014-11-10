@@ -1,0 +1,20 @@
+<div class="portfolio-item graphic-design">
+  <div class="he-wrap tpl6">
+    <%= image_tag thumb_url %>
+    <div class="he-view">
+      <div class="bg a0" data-animate="fadeIn">
+        <h3 class="a1" data-animate="fadeInDown"><%= title %></h3>
+        <%= link_to full_size_url, class: 'dmbutton a2', 'data-animate' => 'fadeInUp', 'rel' => 'prettyPhoto' do %>
+            <i class="fa fa-search"></i>
+        <% end %>
+        <%= link_to link_url, class: 'dmbutton a2', 'data-animate' => 'fadeInUp' do %>
+            <i class="fa fa-link"></i>
+        <% end %>
+      </div>
+      <!-- he bg -->
+    </div>
+    <!-- he view -->
+  </div>
+  <!-- he wrap -->
+</div>
+<!-- end portfolio-item -->
