@@ -36,7 +36,32 @@ class ProjectsController < ApplicationController
 
   end
 
+  def like
+    authorize! :create, ProjectLike
+    unless @project.liking_users.include? current_user
+      @project.liking_users << current_user
+    end
+    respond_to do |format|
+      format.html do
+        redirect_to project_path(@project)
+      end
+    end
+  end
+
+  def unlike
+    authorize! :destroy, ProjectLike
+    if @project.liking_users.include? current_user
+      @project.liking_users.delete current_user
+    end
+    respond_to do |format|
+      format.html do
+        redirect_to project_path(@project)
+      end
+    end
+  end
+
   def show
+    @liked = current_user && @project.liking_users.include?(current_user)
   end
 
   def edit

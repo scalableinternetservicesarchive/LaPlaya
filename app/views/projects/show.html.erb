@@ -47,7 +47,9 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="spacing"></div>
-          <h4>Project Details</h4>
+          <h4>Project Details
+            <%= heart_link %>
+          </h4>
 
           <div class="hline"></div>
           <p><b>Created:</b> <%= @project.created_at %></p>
@@ -55,6 +57,8 @@
           <p><b>Last Modified:</b> <%= @project.updated_at %></p>
 
           <p><b>Author:</b> <%= @project.user.username %></p>
+
+          <p><b>Hearts:</b> <%= @project.likes %></p>
         </div>
       </div>
 

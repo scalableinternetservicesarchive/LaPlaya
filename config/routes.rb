@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   resources :galleries
 
-  resources :projects
+  resources :projects do
+    member do
+      post 'like'
+      delete 'unlike'
+    end
+
+  end
   devise_for :users,
              controllers: {
                  omniauth_callbacks: 'users/omniauth_callbacks',

@@ -21,6 +21,8 @@ class Ability
       can :rud, Project, user_id: user.id
       can :rud, Gallery, user_id: user.id
       can :rud, Comment, user_id: user.id
+
+      can [:create, :destroy], ProjectLike, user_id: user.id
     end
 
     # The first argument to `can` is the action you are giving the user

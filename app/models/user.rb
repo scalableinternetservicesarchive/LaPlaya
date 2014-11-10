@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
   validates_presence_of :username
 
+  #Project Likes
+  has_many :project_likes, dependent: :destroy
+  has_many :liked_projects, through: :project_likes, source: :project
 
   def self.new_from_omniauth(auth, attrs = {})
     where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
