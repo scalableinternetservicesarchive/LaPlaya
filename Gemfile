@@ -46,6 +46,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-clever'
+gem 'cancancan', '~> 1.9.2'
 
 #Javascript isolation
 gem 'paloma'
