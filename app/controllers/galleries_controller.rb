@@ -9,6 +9,7 @@ class GalleriesController < ApplicationController
   end
 
   def show
+    @projects = @gallery.projects
     respond_with(@gallery)
   end
 
@@ -44,6 +45,6 @@ class GalleriesController < ApplicationController
     end
 
     def gallery_params
-      params.require(:gallery).permit(:title)
+      params.require(:gallery).permit(:title,project_ids: [])
     end
 end
