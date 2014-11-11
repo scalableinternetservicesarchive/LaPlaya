@@ -16,11 +16,10 @@
         <%= nav_link 'ABOUT', solid_about_path %>
         <%= nav_link 'CONTACT', solid_contact_path %>
         <%= nav_dropdown 'PAGES ' do %>
-            <% nav_link('BLOG', solid_blog_path) +
-                       nav_link('SINGLE POST', solid_single_post_path) +
-                       nav_link('PORTFOLIO', solid_portfolio_path) +
-                       nav_link('SINGLE PROJECT', solid_single_project_path)
-            %>
+            <%= nav_link('BLOG', solid_blog_path) %>
+            <%= nav_link('SINGLE POST', solid_single_post_path) %>
+            <%= nav_link('PORTFOLIO', solid_portfolio_path) %>
+            <%= nav_link('SINGLE PROJECT', solid_single_project_path) %>
         <% end %>
       </ul>
     </div>

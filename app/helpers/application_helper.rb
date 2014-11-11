@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include SolidThemeHelpers
   def full_title(page_title)
     if page_title.empty?
       'LaPlaya'
@@ -48,12 +49,13 @@ module ApplicationHelper
     content = capture(&block)
     class_name = content.index('active').nil? ? 'dropdown' : 'dropdown active'
     content_tag(:li, class: class_name) do
-      (link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
-        (dropdown_text +
-            content_tag(:b, nil, class: 'caret')).html_safe
-      end) +
-          content_tag(:ul, class: 'dropdown-menu', &block)
+      concat (link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do
+               concat dropdown_text
+               concat content_tag(:b, nil, class: 'caret')
+             end)
+      concat content_tag(:ul, content, class: 'dropdown-menu')
     end
   end
+
 
 end

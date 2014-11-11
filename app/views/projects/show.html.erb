@@ -92,57 +92,39 @@
  PORTFOLIO SECTION
  ***************************************************************************************************************** -->
 <div id="portfoliowrap">
-  <div class="portfolio-centered">
-    <h3>Related Works.</h3>
-
-    <div class="recentitems portfolio">
-      <%= render partial: 'application/solid_portfolio_item',
-                 locals: {
-                         title: 'A Graphic Design Item',
-                         thumb_url: '/solid/img/portfolio/portfolio_09.jpg',
-                         full_size_url: '/solid/img/portfolio/portfolio_09.jpg',
-                         link_url: '/solid/single-project.html'
-
-                 } %>
-      <%= render partial: 'application/solid_portfolio_item',
-                 locals: {
-                         title: 'A Web Design Item',
-                         thumb_url: '/solid/img/portfolio/portfolio_02.jpg',
-                         full_size_url: '/solid/img/portfolio/portfolio_02.jpg',
-                         link_url: '/solid/single-project.html'
-
-                 } %>
-      <%= render partial: 'application/solid_portfolio_item',
-                 locals: {
-                         title: 'A Graphic Design Item',
-                         thumb_url: '/solid/img/portfolio/portfolio_03.jpg',
-                         full_size_url: '/solid/img/portfolio/portfolio_03.jpg',
-                         link_url: '/solid/single-project.html'
-
-                 } %>
-
-      <%= render partial: 'application/solid_portfolio_item',
-                 locals: {
-                         title: 'A Graphic Design Item',
-                         thumb_url: '/solid/img/portfolio/portfolio_04.jpg',
-                         full_size_url: '/solid/img/portfolio/portfolio_04.jpg',
-                         link_url: '/solid/single-project.html'
-
-                 } %>
-
-      <%= render partial: 'application/solid_portfolio_item',
-                 locals: {
-                         title: 'A Graphic Design Item',
-                         thumb_url: '/solid/img/portfolio/portfolio_05.jpg',
-                         full_size_url: '/solid/img/portfolio/portfolio_05.jpg',
-                         link_url: '/solid/single-project.html'
-
-                 } %>
-
-    </div>
-    <!-- portfolio -->
-  </div>
-  <!-- portfolio container -->
+  <h3>Related Works.</h3>
+  <%= solid_portfolio do %>
+      <%= solid_portfolio_item 'A Graphic Design Item',
+                               '/solid/img/portfolio/portfolio_09.jpg',
+                               '/solid/img/portfolio/portfolio_09.jpg',
+                               '/solid/single-project.html',
+                               'portfolio1'
+      %>
+      <%= solid_portfolio_item 'A Web Design Item',
+                               '/solid/img/portfolio/portfolio_02.jpg',
+                               '/solid/img/portfolio/portfolio_02.jpg',
+                               '/solid/single-project.html',
+                               'portfolio2'
+      %>
+      <%= solid_portfolio_item 'A Graphic Design Item',
+                               '/solid/img/portfolio/portfolio_03.jpg',
+                               '/solid/img/portfolio/portfolio_03.jpg',
+                               '/solid/single-project.html',
+                               'portfolio3'
+      %>
+      <%= solid_portfolio_item 'A Graphic Design Item',
+                               '/solid/img/portfolio/portfolio_04.jpg',
+                               '/solid/img/portfolio/portfolio_04.jpg',
+                               '/solid/single-project.html',
+                               'portfolio4'
+      %>
+      <%= solid_portfolio_item 'A Graphic Design Item',
+                               '/solid/img/portfolio/portfolio_05.jpg',
+                               '/solid/img/portfolio/portfolio_05.jpg',
+                               '/solid/single-project.html',
+                               'portfolio5'
+      %>
+  <% end %>
 </div><!--/Portfoliowrap -->
 	 
 	 	 

@@ -14,8 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require paloma
-//= require prettyphoto-rails
-//= require masonry/jquery.masonry
+//= require lightbox.min
 //= require solid/jquery.isotope.min
 //= require solid/jquery.hoverdir
 //= require solid/jquery.hoverex.min
