@@ -5,7 +5,4 @@
 ProjectsController = Paloma.controller('Projects');
 
 ProjectsController.prototype.show = () ->
-  $(document).ready((() ->
-    solidPortfolio()
-  ))
 

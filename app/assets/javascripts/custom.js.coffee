@@ -2,6 +2,7 @@ root = exports ? this
 
 
 jQueryDocumentSelectors = () ->
+  solidPortfolio()
   #For any anchor link, we can smoothscroll it by adding a .smoothscroll to its classes
   $('a[href^="#"].smoothscroll').on('click', (e) ->
     e.preventDefault()

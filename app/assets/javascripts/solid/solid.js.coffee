@@ -4,7 +4,4 @@
 
 StaticPagesController = Paloma.controller('Solid/Solid');
 StaticPagesController.prototype.portfolio = () ->
-  $(document).ready((() ->
-    solidPortfolio()
-  ))
 
