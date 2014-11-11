@@ -9,6 +9,6 @@
   <%= @gallery.user.username || "Uncurated" %>
 </p>
 
-<%= link_to 'Edit', edit_gallery_path(@gallery), class: 'btn btn-warning btn-small' %>
-<%= link_to 'Destroy', @gallery, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Edit', edit_gallery_path(@gallery), class: 'btn btn-warning' %>
+<%= link_to 'Destroy', @gallery, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
 <%= link_to 'Back', galleries_path, class: 'btn btn-default' %>

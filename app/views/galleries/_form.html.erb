@@ -1,8 +1,7 @@
 <%= semantic_form_for @gallery do |f| %>
   <%= f.inputs do %>
     <%= f.input :title %>
-    <%= f.input :projects, :as => :select, :collection => Project.all,
-                :include_blank => true, :input_html => { :multiple => true } %>
+    <%= f.input :projects, collection: @projects %>
   <% end %>
 
   <%= f.actions do %>

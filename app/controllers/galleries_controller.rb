@@ -14,6 +14,7 @@ class GalleriesController < ApplicationController
 
   def new
     @gallery = Gallery.new
+    @projects = Project.all
     respond_with(@gallery)
   end
 
