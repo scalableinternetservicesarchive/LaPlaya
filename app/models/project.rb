@@ -16,4 +16,22 @@ class Project < ActiveRecord::Base
     comments.where parent_id: nil
   end
 
+  def add_like(current_user)
+    if liking_users.include? current_user
+      false
+    else
+      liking_users << current_user
+      true
+    end
+  end
+
+  def remove_like(current_user)
+    if liking_users.include? current_user
+      liking_users.delete current_user
+      true
+    else
+      false
+    end
+  end
+
 end

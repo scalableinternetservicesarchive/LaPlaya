@@ -38,9 +38,7 @@ class ProjectsController < ApplicationController
 
   def like
     authorize! :create, ProjectLike
-    unless @project.liking_users.include? current_user
-      @project.liking_users << current_user
-    end
+    result = @project.add_like(current_user)
     respond_to do |format|
       format.html do
         redirect_to project_path(@project)
@@ -50,9 +48,7 @@ class ProjectsController < ApplicationController
 
   def unlike
     authorize! :destroy, ProjectLike
-    if @project.liking_users.include? current_user
-      @project.liking_users.delete current_user
-    end
+    result = @project.remove_like(current_user)
     respond_to do |format|
       format.html do
         redirect_to project_path(@project)
