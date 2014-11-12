@@ -1,10 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :destroy]
-  before_action :authenticate_user!, only: [:create, :new, :destroy]
-
-  def index
-    @comments = Comment.all
-  end
+  check_authorization
+  load_resource
+  authorize_resource only: Ability::RESTFUL_ACTIONS
 
   def new
     @comment = Comment.new(parent_id: params[:parent_id])
@@ -27,9 +24,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def destroy
     @comment.destroy
     respond_to do |format|
@@ -39,12 +33,6 @@ class CommentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
-
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
       params.require(:comment).permit(:text, :parent_id)

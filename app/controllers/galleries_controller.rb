@@ -1,10 +1,10 @@
 class GalleriesController < ApplicationController
-  before_action :set_gallery, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:create, :edit, :new, :update, :destroy]
+  check_authorization
+  load_resource
+  authorize_resource only: Ability::RESTFUL_ACTIONS
   respond_to :html, :json
 
   def index
-    @galleries = Gallery.all
     respond_with(@galleries)
   end
 
@@ -14,7 +14,6 @@ class GalleriesController < ApplicationController
   end
 
   def new
-    @gallery = Gallery.new
     @projects = Project.all
     respond_with(@gallery)
   end
@@ -23,7 +22,6 @@ class GalleriesController < ApplicationController
   end
 
   def create
-    @gallery = Gallery.new(gallery_params)
     @gallery.user = current_user
     @gallery.save
     respond_with(@gallery)
@@ -40,10 +38,6 @@ class GalleriesController < ApplicationController
   end
 
   private
-    def set_gallery
-      @gallery = Gallery.find(params[:id])
-    end
-
     def gallery_params
       params.require(:gallery).permit(:title,project_ids: [])
     end

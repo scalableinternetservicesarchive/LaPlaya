@@ -17,16 +17,11 @@
     <h3>Projects:</h3>
 
     <div class="recentitems portfolio">
-
-      <% @projects.each do |project| %>
-      <%= render partial: 'application/solid_portfolio_item',
-                 locals: {
-                         title: project.title,
-                         thumb_url: project.thumbnail,
-                         full_size_url: project.thumbnail,
-                         link_url: project_path(project) }     %>
+      <%= solid_portfolio do %>
+          <% @projects.each do |project| %>
+              <%= solid_portfolio_item(project.title, project.thumbnail, project.thumbnail, project_path(project)) %>
+          <% end %>
       <% end %>
-
     </div>
     <!-- portfolio -->
   </div>
@@ -34,5 +29,5 @@
 </div><!--/Portfoliowrap -->
 
 <%= link_to 'Edit', edit_gallery_path(@gallery), class: 'btn btn-warning' %>
-<%= link_to 'Destroy', @gallery, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Destroy', @gallery, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
 <%= link_to 'Back', galleries_path, class: 'btn btn-default' %>
