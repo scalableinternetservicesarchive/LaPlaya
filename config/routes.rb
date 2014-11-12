@@ -7,13 +7,14 @@ Rails.application.routes.draw do
         get 'new/(:parent_id)', to: 'comments#new', as: 'new'
       end
     end
-  member do
+    member do
       post 'like'
       delete 'unlike'
     end
-
   end
   get 'projects/:id/comments/:comment_id', to: 'projects#show', as: 'project_comment_show'
+
+  get 'profile/:id', to: 'profiles#show', as: 'profile'
 
   devise_for :users,
              controllers: {
