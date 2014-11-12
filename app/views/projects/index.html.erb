@@ -13,11 +13,11 @@
       <tr>
         <td><%= project.title %></td>
         <td><%= link_to 'Show', project, class: 'btn btn-info btn-sm' %></td>
-        <% if current_user and can? :edit, Project, :user_id => current_user.uid %>
+        <% if can? :edit, project %>
             <td><%= link_to 'Edit', edit_project_path(project), class: 'btn btn-warning btn-sm' %></td>
         <% end %>
-        <% if current_user and can? :destroy, Project, :user_id => current_user.uid %>
-            <td><%= link_to 'Destroy', project, class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :destroy, project %>
+            <td><%= link_to 'Destroy', project, class: 'btn btn-danger btn-sm', method: :delete, data: {confirm: 'Are you sure?'} %></td>
         <% end %>
       </tr>
   <% end %>
