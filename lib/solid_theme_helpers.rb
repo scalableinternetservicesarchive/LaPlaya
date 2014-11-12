@@ -75,8 +75,12 @@ module SolidThemeHelpers
     end
   end
 
-  def solid_portfolio_item_wrapper(&block)
-    content_tag :div, class: 'portfolio-item graphic-design', &block
+  def solid_portfolio_item_wrapper(wrapper_optipns = {}, &block)
+    klass = 'portfolio-item'
+    if wrapper_optipns[:class]
+      klass = wrapper_optipns[:class]
+    end
+    content_tag :div, class: klass, &block
   end
 
 end

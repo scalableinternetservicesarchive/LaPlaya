@@ -15,10 +15,6 @@ jQueryDocumentSelectors = () ->
     )
   )
 
-  $(document).ready( ->
-    $("a[rel^='prettyPhoto']").prettyPhoto()
-  )
-
   popupCenter = (url, width, height, name) ->
     left = (screen.width / 2) - (width / 2)
     top = (screen.height / 2) - (height / 2)
