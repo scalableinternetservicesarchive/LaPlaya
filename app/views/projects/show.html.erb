@@ -30,8 +30,8 @@
       <p>
         <%= @project.about %>
       </p>
-      <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-warning btn-small' %>
-      <%= link_to 'Destroy', @project, class: 'btn btn-danger btn-sm', method: :delete, data: {confirm: 'Are you sure?'} %>
+      <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-warning' if can? :edit, @project %>
+      <%= link_to 'Destroy', @project, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} if can? :destroy, @project%>
       <%= link_to 'Back', projects_path, class: 'btn btn-default' %>
 
       <div id="comments">
