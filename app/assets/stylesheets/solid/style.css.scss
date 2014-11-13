@@ -11,6 +11,7 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,700,900);
 @import url(http://fonts.googleapis.com/css?family=Lato:400,900);
 @import url("hoverex-all.css") screen;
+@import "bootstrap/variables";
 
 /*	################################################################
 	1. GENERAL STRUCTURES
@@ -81,7 +82,11 @@ a {
 }
 
 .centered {
-  text-align: center
+  text-align: center;
+  img {
+    margin-left: auto;
+    margin-right: auto
+  }
 }
 
 /*	################################################################
@@ -409,6 +414,13 @@ csmall2 {
 .spacing {
   margin-top: 40px;
   margin-bottom: 40px;
+}
+
+.spacing-sm {
+  @media (max-width: #{$screen-sm-min - 1}) {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 }
 
 .badge-theme {

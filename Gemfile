@@ -49,15 +49,16 @@ gem 'autoprefixer-rails'
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'dotenv-rails', '~> 0.11.1'
-  gem 'factory_girl_rails', '~> 4.4.1'
-  gem 'faker', '~> 1.3.0'
+  gem 'dotenv-rails', '~> 0.11'
+  gem 'factory_girl_rails', '~> 4.4'
+  gem 'faker', '~> 1.3'
   gem 'rspec-rails', '~> 3.1'
-  gem 'fuubar', '~> 2.0.0'
+  gem 'fuubar', '~> 2.0'
   gem 'rspec-expectations', '~> 3.1'
-  gem 'rspec-its', '~> 1.0.1'
-  gem 'rspec-collection_matchers', '~> 1.0.0'
-  gem 'childprocess', '~> 0.5.2'
+  gem 'rspec-its', '~> 1.1'
+  gem 'rspec-collection_matchers', '~> 1.1'
+  gem 'rspec-mocks', '~> 3.1'
+  gem 'childprocess', '~> 0.5'
 end
 
 group :development do

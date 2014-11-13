@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     @project = Project.find(params[:project_id])
 
     @comment = @project.comments.create(comment_params)
-    @comment.user = current_user
+    @comment.author = current_user
 
     respond_to do |format|
       if @comment.save

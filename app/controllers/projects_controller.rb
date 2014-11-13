@@ -22,7 +22,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
 
-    @project.user = current_user
+    @project.author= current_user
 
     respond_to do |format|
       if @project.save
@@ -67,6 +67,39 @@ class ProjectsController < ApplicationController
         flash[:notice] = "Invalid comment id"
       end
     end
+
+    @related_works = [
+        OpenStruct.new(
+            {
+                title: 'A Graphic Design Item',
+                thumbnail: '/solid/img/portfolio/portfolio_09.jpg',
+                url: '/solid/single-project.html'
+            }),
+        OpenStruct.new(
+            {
+                title: 'A Web Design Item',
+                thumbnail: '/solid/img/portfolio/portfolio_02.jpg',
+                url: '/solid/single-project.html'
+            }),
+        OpenStruct.new(
+            {
+                title: 'A Graphic Design Item',
+                thumbnail: '/solid/img/portfolio/portfolio_03.jpg',
+                url: '/solid/single-project.html'
+            }),
+        OpenStruct.new(
+            {
+                title: 'A Graphic Design Item',
+                thumbnail: '/solid/img/portfolio/portfolio_04.jpg',
+                url: '/solid/single-project.html'
+            }),
+        OpenStruct.new(
+            {
+                title: 'A Graphic Design Item',
+                thumbnail: '/solid/img/portfolio/portfolio_05.jpg',
+                url: '/solid/single-project.html'
+            })
+    ]
   end
 
   def edit

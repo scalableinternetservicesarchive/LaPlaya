@@ -19,20 +19,51 @@
 
 <div class="container mt">
   <div class="row">
-    <div class="col-lg-10 col-lg-offset-1 centered">
+    <div class="col-lg-6 col-lg-offset-1 col-md-7 centered">
       <%= image_tag @project.thumbnail, class: 'img-responsive' %>
     </div>
 
-    <div class="col-lg-5 col-lg-offset-1">
+    <div class="col-lg-4 col-md-5">
+      <div class="row spacing-sm">
+        <div class="col-lg-12">
+          <h4>Instructions</h4>
+
+          <div class="hline"></div>
+          <p class="instructions">
+            <%= @project.instructions %>
+          </p>
+        </div>
+        <div class="col-lg-12">
+          <div class="spacing"></div>
+          <h4>Project Details
+            <div class="pull-right">
+              <%= @project.likes %>
+              <%= heart_link %>
+            </div>
+          </h4>
+
+          <div class="hline"></div>
+          <p><b>Created:</b> <%= @project.created_at %></p>
+
+          <p><b>Last Modified:</b> <%= @project.updated_at %></p>
+
+          <p><b>Author:</b> <%= link_to @project.author.username, profile_path(@project.author) %></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
       <div class="spacing"></div>
       <h3><%= @project.title %></h3>
 
+      <div class="hline"></div>
       <p>
         <%= @project.about %>
       </p>
       <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-warning' if can? :edit, @project %>
-      <%= link_to 'Destroy', @project, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} if can? :destroy, @project%>
-      <%= link_to 'Back', projects_path, class: 'btn btn-default' %>
+      <%= link_to 'Destroy', @project, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} if can? :destroy, @project %>
 
       <div id="comments">
         <h3>Comments</h3>
@@ -52,41 +83,10 @@
       </div>
     </div>
 
-    <div class="col-lg-4 col-lg-offset-1">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="spacing"></div>
-          <h4>Instructions</h4>
-
-          <div class="hline"></div>
-          <p>
-            <%= @project.instructions %>
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="spacing"></div>
-          <h4>Project Details
-            <%= heart_link %>
-          </h4>
-
-          <div class="hline"></div>
-          <p><b>Created:</b> <%= @project.created_at %></p>
-
-          <p><b>Last Modified:</b> <%= @project.updated_at %></p>
-
-          <p><b>Author:</b> <%= @project.user.username %></p>
-
-          <p><b>Hearts:</b> <%= @project.likes %></p>
-        </div>
-      </div>
-
-    </div>
-
   </div>
   <! --/row -->
-</div><! --/container -->
+</div>
+<! --/container -->
 
 <!-- *******************************V**********************************************************************************
  PORTFOLIO SECTION
@@ -94,37 +94,15 @@
 <div id="portfoliowrap">
   <h3>Related Works.</h3>
   <%= solid_portfolio do %>
-      <%= solid_portfolio_item 'A Graphic Design Item',
-                               '/solid/img/portfolio/portfolio_09.jpg',
-                               '/solid/img/portfolio/portfolio_09.jpg',
-                               '/solid/single-project.html',
-                               'portfolio1'
-      %>
-      <%= solid_portfolio_item 'A Web Design Item',
-                               '/solid/img/portfolio/portfolio_02.jpg',
-                               '/solid/img/portfolio/portfolio_02.jpg',
-                               '/solid/single-project.html',
-                               'portfolio2'
-      %>
-      <%= solid_portfolio_item 'A Graphic Design Item',
-                               '/solid/img/portfolio/portfolio_03.jpg',
-                               '/solid/img/portfolio/portfolio_03.jpg',
-                               '/solid/single-project.html',
-                               'portfolio3'
-      %>
-      <%= solid_portfolio_item 'A Graphic Design Item',
-                               '/solid/img/portfolio/portfolio_04.jpg',
-                               '/solid/img/portfolio/portfolio_04.jpg',
-                               '/solid/single-project.html',
-                               'portfolio4'
-      %>
-      <%= solid_portfolio_item 'A Graphic Design Item',
-                               '/solid/img/portfolio/portfolio_05.jpg',
-                               '/solid/img/portfolio/portfolio_05.jpg',
-                               '/solid/single-project.html',
-                               'portfolio5'
-      %>
+      <%= @related_works.each do |work| %>
+          <%= solid_portfolio_item work.title,
+                                   work.thumbnail,
+                                   work.thumbnail,
+                                   work.url
+          %>
+      <% end %>
   <% end %>
-</div><!--/Portfoliowrap -->
+</div>
+<!--/Portfoliowrap -->
 	 
 	 	 

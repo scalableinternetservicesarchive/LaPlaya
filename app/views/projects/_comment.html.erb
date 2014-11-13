@@ -1,9 +1,9 @@
 <div class="comment">
 <div>
-  <i><%= comment.user.username %></i>
+  <i><%= comment.author.username %></i>
 </div>
 <div><%= comment.text %></div>
-<div><%= link_to 'Reply', new_project_comments_path(comment.project, comment), class: "btn btn-xs btn-default" %></div>
+<div><%= link_to 'Reply', new_project_comments_path(comment.project, comment), class: 'btn btn-xs btn-default' %></div>
 <% if comment.children.any? %>
     <div>
       <%= render partial:'comment', collection: comment.children %>

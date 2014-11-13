@@ -27,7 +27,7 @@ module SolidThemeHelpers
 
   def solid_portfolio_item(text, thumb_url, image_url, link_url, lightbox_title = SecureRandom.hex(10))
     solid_portfolio_item_wrapper do
-      solid_mouseover_image(text, thumb_url) do
+      solid_mouseover_image(truncate(text, length: 40), thumb_url) do
         concat (link_to image_url, class: 'dmbutton a2', data: {animate: 'fadeInUp', lightbox: lightbox_title} do
                  '<i class="fa fa-search"></i>'.html_safe
                end)

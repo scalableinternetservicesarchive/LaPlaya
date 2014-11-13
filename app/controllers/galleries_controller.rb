@@ -22,7 +22,7 @@ class GalleriesController < ApplicationController
   end
 
   def create
-    @gallery.user = current_user
+    @gallery.author = current_user
     @gallery.save
     respond_with(@gallery)
   end

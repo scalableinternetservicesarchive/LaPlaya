@@ -1,9 +1,16 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap/variables";
 
 #main-body.projects {
   .comment {
     margin-left: 15px;
+  }
+  .instructions {
+    @media (min-width: $screen-sm-min) {
+      height: 215px;
+      overflow-y: scroll;
+    }
   }
 }
