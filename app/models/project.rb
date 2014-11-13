@@ -4,13 +4,16 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :galleries
   has_and_belongs_to_many :user_likes, class_name: 'User'
 
-  validates :title, presence: true
-  validates :thumbnail, presence: true
-
   #Project Likes
   has_many :project_likes, dependent: :destroy
   has_many :liking_users, through: :project_likes, source: :user
   alias_attribute :likes, :project_likes_count
+
+  validates_presence_of :title
+  validates_length_of :title, minimum: 5
+  validates_presence_of :thumbnail
+  validates_presence_of :author
+
 
   def root_comments
     comments.where parent_id: nil

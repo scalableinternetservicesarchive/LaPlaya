@@ -1,7 +1,7 @@
-require 'test_helper'
+require 'rails_helper'
 
-class CommentTest < ActiveSupport::TestCase
-
+RSpec.describe Comment, :type => :model do
+  pending "add some examples to (or delete) #{__FILE__}"
   test "comment should not save without a project" do
     comment = Comment.new text: "test"
     assert_not comment.save, "Saved comment without associating it with a project"
@@ -11,5 +11,4 @@ class CommentTest < ActiveSupport::TestCase
     comment = comments(:invalid)
     assert_not comment.save, "Created a comment with text length < 1"
   end
-
 end
