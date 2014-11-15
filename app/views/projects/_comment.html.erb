@@ -1,15 +1,22 @@
 <div class="comment">
-<div>
-  <i><%= comment.author.username %></i>
-</div>
-<div><%= comment.text %></div>
-<div>
-  <%= link_to 'Reply', new_project_comments_path(comment.project, comment), class: 'btn btn-xs btn-default' %>
-  <%= link_to 'Delete', project_comment_path(comment.project, comment), class: 'btn btn-xs btn-danger', method: :delete, data: {confirm: 'Are you sure?'} if can? :destroy, comment %>
-</div>
-<% if comment.children.any? %>
-    <div>
-      <%= render partial:'comment', collection: comment.children %>
-    </div>
-<% end %>
+  <% if comment.deleted %>
+      <div>
+        <i> Deleted </i>
+      </div>
+      <div>Deleted Comment</div>
+  <% else %>
+      <div>
+        <i><%= comment.author.username %></i>
+      </div>
+      <div><%= comment.text %></div>
+      <div>
+        <%= link_to 'Reply', new_project_comments_path(comment.project, comment), class: 'btn btn-xs btn-default' %>
+        <%= link_to 'Delete', project_comment_path(comment.project, comment), class: 'btn btn-xs btn-danger', method: :delete, data: {confirm: 'Are you sure?'} if can? :destroy, comment %>
+      </div>
+  <% end %>
+  <% if comment.children.any? %>
+      <div>
+        <%= render partial: 'comment', collection: comment.children %>
+      </div>
+  <% end %>
 </div>

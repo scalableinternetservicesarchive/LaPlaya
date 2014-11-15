@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110061622) do
+ActiveRecord::Schema.define(version: 20141115213215) do
 
   create_table "comments", force: true do |t|
     t.text     "text"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20141110061622) do
     t.datetime "updated_at"
     t.integer  "project_id"
     t.integer  "user_id"
+    t.boolean  "deleted"
   end
 
   add_index "comments", ["project_id"], name: "index_comments_on_project_id"
