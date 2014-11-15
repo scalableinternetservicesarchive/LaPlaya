@@ -1,18 +1,17 @@
 class CommentsController < ApplicationController
+  before_action :set_parent_id_to_comment, only: [:new]
   check_authorization
-  load_resource
-  authorize_resource only: Ability::RESTFUL_ACTIONS
+  load_resource :project, only: [:new, :create, :destroy]
+  load_resource :comment, through: :project
+  authorize_resource :comment, only: Ability::RESTFUL_ACTIONS
 
   def new
-    @comment = Comment.new(parent_id: params[:parent_id])
+    authorize! :show, @project
   end
 
   def create
-    @project = Project.find(params[:project_id])
-
-    @comment = @project.comments.create(comment_params)
+    authorize! :show, @project
     @comment.author = current_user
-    @comment.deleted = false
 
     respond_to do |format|
       if @comment.save
@@ -42,6 +41,13 @@ class CommentsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def comment_params
     params.require(:comment).permit(:text, :parent_id)
+  end
+
+  def set_parent_id_to_comment
+    if params[:parent_id]
+      params[:comment] ||= {}
+      params[:comment][:parent_id] = params.delete(:parent_id)
+    end
   end
 
 end

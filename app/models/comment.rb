@@ -10,4 +10,15 @@ class Comment < ActiveRecord::Base
   validates :text, length: { minimum: 1 }
   validates_presence_of :parent, if: 'parent_id.present?'
 
+  validate :parent_in_same_project
+
+
+  private
+  def parent_in_same_project
+    unless parent.nil? || (parent.project == project)
+      errors.add(:parent, 'Must belong to the same project')
+      false
+    end
+  end
+
 end
