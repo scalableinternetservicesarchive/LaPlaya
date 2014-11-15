@@ -30,4 +30,6 @@ RSpec.describe Project, :type => :model do
     expect(FactoryGirl.build(:project, title: '')).to_not be_valid
   end
 
+  it { should respond_to(:likes) }
+
 end
