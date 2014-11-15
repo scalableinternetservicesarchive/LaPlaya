@@ -25,9 +25,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    current_project = @comment.project
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to project_comments_url, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to project_path(current_project), notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
