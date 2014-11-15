@@ -60,12 +60,7 @@ class ProjectsController < ApplicationController
     @liked = current_user && @project.liking_users.include?(current_user)
     @comments = @project.root_comments
     if params[:comment_id]
-      @comment = Comment.find(params[:comment_id])
-      if @comment.project == @project
-        @comments = [@comment]
-      else
-        flash[:notice] = "Invalid comment id"
-      end
+      @comments = [@project.comments.find(params[:comment_id])]
     end
 
     @related_works = [

@@ -21,6 +21,9 @@ class Ability
       can :rud, Project, user_id: user.id
       can :rud, Gallery, user_id: user.id
       can :rud, Comment, user_id: user.id
+      cannot :create, Comment do |comment|
+        comment.parent && comment.parent.deleted?
+      end
 
       can [:create, :destroy], ProjectLike, user_id: user.id
     end
