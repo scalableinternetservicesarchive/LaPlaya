@@ -7,5 +7,9 @@ puts 'Starting seeding.'
   puts "\tCreating user..."
   10.times do
     p = FactoryGirl.create(:project, author: u)
+    User.all.each do |user|
+      p.add_like(user)
+    end
   end
 end
+
