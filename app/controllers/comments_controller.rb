@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
 
     @comment = @project.comments.create(comment_params)
     @comment.author = current_user
+    @comment.deleted = false
 
     respond_to do |format|
       if @comment.save
@@ -25,18 +26,22 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    current_project = @comment.project
-    @comment.destroy
+    @comment.deleted = true
     respond_to do |format|
-      format.html { redirect_to project_path(current_project), notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
+      if @comment.save
+        format.html { redirect_to project_path(@comment.project), notice: 'Comment was successfully deleted.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to project_path(@comment.project, @comment), warning: 'There was an error deleting your comment' }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   private
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def comment_params
-      params.require(:comment).permit(:text, :parent_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def comment_params
+    params.require(:comment).permit(:text, :parent_id)
+  end
 
 end
