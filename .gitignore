@@ -20,3 +20,5 @@ public/system
 
 Gemfile.lock
 *.pyc
+test-LaPlaya/**/*.xml*
+test-LaPlaya/**/*.log*
