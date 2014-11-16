@@ -2,12 +2,10 @@
 
 User.create(username: 'superuser', email: 'super_user@example.com', password: 'helloworld', password_confirmation: 'helloworld', super_admin: true)
 puts 'Starting seeding.'
-(1..30).each do
+30.times do
   u = FactoryGirl.create(:user)
   puts "\tCreating user..."
-  (1..10).each do
+  10.times do
     p = FactoryGirl.create(:project, author: u)
   end
 end
-
-puts "\t Created #{Project.count} projects."

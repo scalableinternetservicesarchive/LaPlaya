@@ -14,20 +14,20 @@ Project.all.each do |project|
   end
 
   #  multiple levels of nested comments
-  (1..2).each do
+  2.times do
     current_comments.append(FactoryGirl.create(:comment, author: next_user(users), project: project, parent: nil))
   end
   tmp = current_comments
   current_comments = []
   tmp.each do |comment|
-    (1..3).each do
+    3.times do
       current_comments.append(FactoryGirl.create(:comment, author: next_user(users), project: project, parent: comment))
     end
   end
   tmp = current_comments
   current_comments = []
   tmp.each do |comment|
-    (1..2).each do
+    2.times do
       current_comments.append(FactoryGirl.create(:comment, author: next_user(users), project: project, parent: comment))
     end
   end
