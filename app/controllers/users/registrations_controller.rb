@@ -1,6 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters
-  respond_to :json, :js, only: [:create]
 
   def preregistration
     respond_to do |format|
@@ -48,11 +47,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
         sign_up(resource_name, resource)
-        render js: "window.location=\"#{after_sign_up_path_for(resource)}\";"
+        respond_to do |format|
+          format.js do
+            render js: "window.location=\"#{after_sign_up_path_for(resource)}\";"
+          end
+          format.html do
+            redirect_to after_sign_up_path_for(resource)
+          end
+        end
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
         expire_data_after_sign_in!
-        render js: "window.location=\"#{after_inactive_sign_up_path_for(resource)}\";"
+        respond_to do |format|
+          format.js do
+            render js: "window.location=\"#{after_inactive_sign_up_path_for(resource)}\";"
+          end
+          format.html do
+            redirect_to after_inactive_sign_up_path_for(resource)
+          end
+        end
       end
     else
       clean_up_passwords resource
@@ -68,6 +81,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
         end
         format.json do
           respond_with resource
+        end
+        format.html do
+          @force_show_finish = true
+          @new_user = resource
+          render 'static_pages/home', status: 422
         end
       end
     end

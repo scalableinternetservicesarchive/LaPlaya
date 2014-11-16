@@ -1,7 +1,4 @@
-<% if @force_show_signup %>
-   <% content_for :one_time_script, javascript_tag('$(document).ready(function(){$(\'#registration_modal\').modal(\'show\')});') %>
-<% end %>
-
+<% force_login_helper %>
 
 <!-- *****************************************************************************************************************
  HEADERWRAP

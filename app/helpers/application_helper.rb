@@ -57,5 +57,20 @@ module ApplicationHelper
     end
   end
 
+  def force_login_helper
+    if @force_show_signin || @force_show_signup || @force_show_finish
+      script = '$(\'#registration_modal\').modal(\'show\');'
+      if @force_show_signup
+        script += 'switchSigninModalToClass(\'signup\', false);'
+      elsif @force_show_finish
+        script += 'switchSigninModalToClass(\'finish-signup\', false);'
+      end
+      content_for :one_time_script, javascript_tag("$(document).ready(function(){#{script}});")
+    end
+  end
+
+  def new_user
+    @new_user || User.new
+  end
 
 end

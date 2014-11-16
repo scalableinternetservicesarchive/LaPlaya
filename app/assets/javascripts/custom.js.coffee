@@ -33,7 +33,7 @@ jQueryDocumentSelectors = () ->
 
   #set up the toggle for the modal signup vs. signin links
   modal = $('#registration_modal')
-  switchToClass = (klass) ->
+  switchToClass = (klass, populate = true) ->
     classes = ['signin', 'signup', 'finish-signup']
     classes.splice(classes.indexOf(klass), 1)
     classes = classes.map((str) ->
@@ -61,7 +61,7 @@ jQueryDocumentSelectors = () ->
       $(this).removeClass('hidden')
     )
 
-    if from_form
+    if from_form && populate
       to_form.each(->
         $(this).find('input.email').val(from_form.find('input.email').val())
         $(this).find('input.password').val(from_form.find('input.password').val())
@@ -193,6 +193,7 @@ jQueryDocumentSelectors = () ->
       unless validator.isValid()
         e.preventDefault();
         return false
+      $form[0].submit()
       return true
     ).on('error.form.bv', (e) ->
       e.preventDefault();

@@ -28,7 +28,7 @@ class CPCreateUser(FunkLoadTestCase):
               ['user[password]', 'alphabet'],
               ['user[password_confirmation]', 'alphabet'],
               ['authenticity_token', auth_token],
-              ['user[username]', username]
+              ['user[username]', username],
               ['commit', 'Sign up']],
             description="Create New User")
 

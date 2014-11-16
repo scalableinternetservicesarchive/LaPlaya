@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if session['devise.auth_method'].starts_with?('devise.omniauth')
+      if session['devise.auth_method'] && session['devise.auth_method'].starts_with?('devise.omniauth')
         auth_method = session['devise.auth_method']
         data = session[auth_method]
         user.provider = data['provider']

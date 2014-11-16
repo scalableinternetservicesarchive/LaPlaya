@@ -1,12 +1,11 @@
-<%= form_tag user_preregistration_path, id: 'signup-email-form', class: 'compact-form validated-form', remote: true do %>
+<%= semantic_form_for new_user, url: user_preregistration_path, html: {
+                                      id: 'signup-email-form',
+                                      class: 'compact-form',
+                                      remote: true
+                              } do |f| %>
     <h5 class="heading">Or sign up using your email</h5>
-    <div class="form-group top">
-      <%= text_field_tag 'user[email]', nil, placeholder: 'email', class: 'form-control email', type: 'email' %>
-    </div>
-    <div class="form-group middle">
-      <%= text_field_tag 'user[password]', nil, placeholder: 'password', class: 'form-control password', type: 'password' %>
-    </div>
-    <div class="form-group bottom">
-      <%= text_field_tag 'user[password_confirmation]', nil, placeholder: 'password confirmation', class: 'form-control password-confirmation', type: 'password' %>
-    </div>
+    <%= f.semantic_errors :email, :password, :password_confirmation, :provider, :uid, :username %>
+    <%= f.input :email, placeholder: 'email', label: false, wrapper_html: {class: 'top'} %>
+    <%= f.input :password, placeholder: 'password', label: false, wrapper_html: {class: 'middle'} %>
+    <%= f.input :password_confirmation, placeholder: 'password_confirmation', label: false, wrapper_html: {class: 'bottom'} %>
 <% end %>
