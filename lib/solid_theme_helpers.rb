@@ -1,11 +1,15 @@
 module SolidThemeHelpers
 
   def solid_portfolio(options = {}, &block)
-    wrapper_options = {class: 'portfolio-centered portfolio'}
+    wrapper_options = {class: 'portfolio'}
     if options[:wrapper_options]
       wrapper_options.merge!(options[:wrapper_options])
     end
-    content_tag :div, wrapper_options, &block
+    content = capture(&block)
+    content_tag :div, wrapper_options do
+      concat content_tag :div, '', class: 'grid-sizer'
+      concat content
+    end
   end
 
   def solid_mouseover_image(text, thumb_url, &block)
@@ -47,6 +51,10 @@ module SolidThemeHelpers
       concat solid_carousel_indicators(id, images, options)
       concat solid_carousel_inner(images, options)
     end
+  end
+
+  def sample_mouseover_images
+    session['devise.auth_method']
   end
 
   private

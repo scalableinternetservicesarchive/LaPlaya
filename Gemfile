@@ -42,6 +42,9 @@ gem 'bootstrap-sass'
 gem 'formtastic', '~> 2.0'
 gem 'formtastic-bootstrap', '~> 3.0'
 gem 'bootstrap-validator-rails'
+# gem 'masonry-rails', github: 'kristianmandrup/masonry-rails'
+gem 'imagesLoaded_rails'
+
 
 #included anyways by bootstrap-sass, but lets require it for our project as well.
 gem 'autoprefixer-rails'

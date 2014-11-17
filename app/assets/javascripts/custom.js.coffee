@@ -214,76 +214,15 @@ root.solidPortfolio = () ->
   "use strict"
   $('.portfolio').each( ->
     $container = $(this)
-    $items = $container.find('.portfolio-item')
-    portfolioLayout = 'fitRows'
 
-    if ($container.hasClass('portfolio-centered'))
-      portfolioLayout = 'masonry'
-
-    refreshWaypoints = () ->
-      setTimeout((() ->)
-      , 1000)
-
-    $container.isotope({
-      filter: '*',
-      animationEngine: 'best-available',
-      layoutMode: portfolioLayout,
-      animationOptions: {
-        duration: 750,
-        easing: 'linear',
-        queue: false
-      },
-      masonry: {
-      }
-    }, refreshWaypoints())
-    $('nav.portfolio-filter ul a').on('click', () ->
-      selector = $(this).attr('data-filter')
-      $container.isotope({filter: selector}, refreshWaypoints())
-      $('nav.portfolio-filter ul a').removeClass('active')
-      $(this).addClass('active')
-      false
-    );
-
-    getColumnNumber = () ->
-      winWidth = $(window).width()
-      columnNumber = 1
-
-      if (winWidth > 1200)
-        columnNumber = 5
-      else if (winWidth > 950)
-        columnNumber = 4
-      else if (winWidth > 600)
-        columnNumber = 3
-      else if (winWidth > 400)
-        columnNumber = 2
-      else if (winWidth > 250)
-        columnNumber = 1
-      columnNumber
-
-    setColumns = () ->
-      winWidth = $(window).width()
-      columnNumber = getColumnNumber()
-      itemWidth = Math.floor(winWidth / columnNumber)
-
-      $container.find('.portfolio-item').each(() ->
-        $(this).css({
-          width: itemWidth + 'px'
-        })
-      )
-
-    setPortfolio = () ->
-      setColumns()
-      $container.isotope('reLayout')
-
-    $container.imagesLoaded(() ->
-      setPortfolio()
-    )
-
-    $(window).on('resize', () ->
-      setPortfolio()
+    $container.imagesLoaded(->
+      $container.isotope({
+        itemSelector: '.portfolio-item',
+        masonry: {
+          columnWidth: '.grid-sizer'
+        }
+      })
     )
 
   )
-
-
 

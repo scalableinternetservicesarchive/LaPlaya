@@ -5,6 +5,12 @@
 StaticPagesController = Paloma.controller('StaticPages');
 
 StaticPagesController.prototype.home = () ->
+  $(document).ready(->
+    # We need to relayout the isotope when the panel is uncollapsed
+    $('.portfolio').on('shown.bs.collapse', ->
+      $(this).isotope('layout')
+    )
+  )
 
 
 StaticPagesController.prototype.solid = () ->

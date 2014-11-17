@@ -15,7 +15,8 @@
 //= require bootstrap-sprockets
 //= require paloma
 //= require lightbox.min
-//= require solid/jquery.isotope.min
+//= require imagesloaded
+//= require isotope.pkgd
 //= require solid/jquery.hoverdir
 //= require solid/jquery.hoverex.min
 //= require solid/retina.min

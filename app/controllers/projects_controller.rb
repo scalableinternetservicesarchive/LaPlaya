@@ -63,38 +63,7 @@ class ProjectsController < ApplicationController
       @comments = [@project.comments.find(params[:comment_id])]
     end
 
-    @related_works = [
-        OpenStruct.new(
-            {
-                title: 'A Graphic Design Item',
-                thumbnail: '/solid/img/portfolio/portfolio_09.jpg',
-                url: '/solid/single-project.html'
-            }),
-        OpenStruct.new(
-            {
-                title: 'A Web Design Item',
-                thumbnail: '/solid/img/portfolio/portfolio_02.jpg',
-                url: '/solid/single-project.html'
-            }),
-        OpenStruct.new(
-            {
-                title: 'A Graphic Design Item',
-                thumbnail: '/solid/img/portfolio/portfolio_03.jpg',
-                url: '/solid/single-project.html'
-            }),
-        OpenStruct.new(
-            {
-                title: 'A Graphic Design Item',
-                thumbnail: '/solid/img/portfolio/portfolio_04.jpg',
-                url: '/solid/single-project.html'
-            }),
-        OpenStruct.new(
-            {
-                title: 'A Graphic Design Item',
-                thumbnail: '/solid/img/portfolio/portfolio_05.jpg',
-                url: '/solid/single-project.html'
-            })
-    ]
+    @related_works = sample_gallery_items
   end
 
   def edit

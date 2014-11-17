@@ -4,6 +4,8 @@ FactoryGirl.define do
   factory :gallery do
     title { Faker::Lorem.sentence(2, false, 4) }
     author
+    thumbnail { "#{Faker::Avatar.image(Faker::Lorem.words.join, "600x450")}&bgset=#{%w(bg1 bg2).sample}" }
+
 
     transient do
       projects_count 0

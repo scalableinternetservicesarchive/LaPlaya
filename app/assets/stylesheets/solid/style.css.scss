@@ -193,6 +193,7 @@ a {
   }
 }
 
+// Margin topbottom
 .mtb {
   margin-top: 80px;
   margin-bottom: 80px;
@@ -267,6 +268,26 @@ a {
   padding: 0 !important;
   margin: 0 !important;
   display: block;
+  div.grid-sizer, div.portfolio-item {
+    width: 100%;
+    @media (min-width: 500px) {
+      width: 50%;
+    }
+    /* Small devices (tablets, 768px and up) */
+    @media (min-width: $screen-sm-min) {
+      width: 33.33%;
+    }
+
+    /* Medium devices (desktops, 992px and up) */
+    @media (min-width: $screen-md-min) {
+      width: 25%;
+    }
+
+    /* Large devices (large desktops, 1200px and up) */
+    @media (min-width: $screen-lg-min) {
+      width: 20%;
+    }
+  }
 }
 
 .portfolio-item {
