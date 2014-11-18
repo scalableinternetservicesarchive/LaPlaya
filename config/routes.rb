@@ -42,7 +42,7 @@ Rails.application.routes.draw do
       get 'check_email', to: 'registrations#check_email'
       get 'check_password', to: 'registrations#check_password'
       post 'preregistration', to: 'registrations#preregistration'
-      get 'switch_user', to: 'sessions#switch_user'
+      post 'switch_user', to: 'sessions#switch_user'
     end
     namespace 'users', as: 'user_registration' do
       post '', to: 'registrations#create'

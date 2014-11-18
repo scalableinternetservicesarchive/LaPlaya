@@ -1,5 +1,5 @@
 <u>Login as another user</u>
-<%= form_tag user_switch_user_path, method: :get, class: 'form' do %>
+<%= form_tag user_switch_user_path, method: :post, class: 'form' do %>
     <div class="form-group">
       <%= label_tag 'user_id', 'User', class: 'sr-only' %>
       <%= select_tag 'user_id', options_from_collection_for_select(User.all, :id, :username), class: 'form-control' %>
