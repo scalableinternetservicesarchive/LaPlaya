@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 
 
 #ruby '2.1.3'
@@ -36,17 +35,32 @@ gem 'paloma'
 #Allow us to do global hotkeys in our site (admin user switcher for example)
 gem 'jquery-hotkeys-rails'
 
-gem 'modernizr-rails'
-
 #Pretty stuff
 gem 'font-awesome-rails'
 gem 'bootstrap-sass'
 gem 'formtastic', '~> 2.0'
 gem 'formtastic-bootstrap', '~> 3.0'
-gem 'bootstrap-validator-rails'
-# gem 'masonry-rails', github: 'kristianmandrup/masonry-rails'
 gem 'imagesLoaded_rails'
-gem 'rails-assets-bootstrapvalidator'
+
+# Let's get all of our pretty JS libraries from Bower! This gets updated way faster
+source 'http://rails-assets.org' do # This is bad, but https isn't verifying
+  #To validate forms nicely
+  gem 'rails-assets-bootstrapvalidator'
+  #For the portfolio feature
+  gem 'rails-assets-isotope'
+  #Popover images
+  gem 'rails-assets-lightbox2'
+  #Not really sure, but it sounds cool!
+  gem 'rails-assets-retina.js'
+  #CSS For fancy social buttons
+  gem 'rails-assets-bootstrap-social'
+  #Delay execution till images are loaded
+  gem 'rails-assets-imagesloaded'
+  #Kinda like retina
+  gem 'rails-assets-modernizr'
+  #Admin hotkey enabler
+  gem 'rails-assets-jeresig--jquery.hotkeys'
+end
 
 
 #included anyways by bootstrap-sass, but lets require it for our project as well.
@@ -87,7 +101,7 @@ end
 
 # Use mysql2 as the production database for Active Record
 group :production do
-  gem 'therubyracer',  platforms: :ruby
+  gem 'therubyracer', platforms: :ruby
   gem 'mysql2'
 
   #Tame down the rails logs a bit

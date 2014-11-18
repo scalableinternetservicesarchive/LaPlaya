@@ -14,14 +14,16 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require paloma
-//= require lightbox.min
-//= require imagesloaded
-//= require isotope.pkgd
+//= require lightbox2
+//= require imagesloaded/imagesloaded.pkgd
+//= require masonry/dist/masonry.pkgd
+//= require isotope
 //= require solid/jquery.hoverdir
 //= require solid/jquery.hoverex.min
-//= require solid/retina.min
-//= require bootstrapValidator.min
+//= require retina
+//= require bootstrapvalidator
 //= require jquery-hotkeys
 //= require_tree .
+
 
 

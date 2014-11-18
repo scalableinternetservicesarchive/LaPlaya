@@ -14,10 +14,10 @@
  *= require_tree .
  *= require solid/style
  *= require font-awesome
- *= require bootstrap-social
  *= require formtastic-bootstrap
- *= require lightbox
- *= require bootstrapValidator.min
+ *= require lightbox2/css/lightbox
+ *= require bootstrapvalidator
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
