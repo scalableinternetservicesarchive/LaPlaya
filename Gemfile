@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
+
 
 #ruby '2.1.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -44,6 +46,7 @@ gem 'formtastic-bootstrap', '~> 3.0'
 gem 'bootstrap-validator-rails'
 # gem 'masonry-rails', github: 'kristianmandrup/masonry-rails'
 gem 'imagesLoaded_rails'
+gem 'rails-assets-bootstrapvalidator'
 
 
 #included anyways by bootstrap-sass, but lets require it for our project as well.
@@ -76,10 +79,18 @@ group :development do
   #enables RailsPanel chrome developer addon
   gem 'meta_request'
   gem 'rack-mini-profiler'
+
+  #Gives us some great tools for finding slowness
+  gem 'newrelic_rpm'
+
 end
 
 # Use mysql2 as the production database for Active Record
 group :production do
   gem 'therubyracer',  platforms: :ruby
   gem 'mysql2'
+
+  #Tame down the rails logs a bit
+  gem 'lograge'
+
 end
