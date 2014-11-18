@@ -28,6 +28,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 # gem 'omniauth-clever', github: 'code-dot-org/omniauth-clever', branch: 'master'
 gem 'cancancan'
+gem 'will_paginate'
 
 #Javascript isolation
 gem 'paloma'
