@@ -1,6 +1,6 @@
 # Galleries
 users = User.all.to_a.each
-5.times do
+15.times do
   puts "\tCreating gallery..."
   def next_user(user_list)
     begin
