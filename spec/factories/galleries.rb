@@ -5,15 +5,12 @@ FactoryGirl.define do
     title { Faker::Lorem.sentence(2, false, 4) }
     author
 
-    factory :gallery_with_projects do
+    transient do
+      projects_count 0
+    end
 
-      # see https://github.com/thoughtbot/factory_girl/blob/v4.4.0/GETTING_STARTED.md#transient-attributes
-      # for what this is doing. I want 5 projects to be created with every gallery
-      ignore do
-        projects_count 5
-      end
-
-      after(:create) do |gallery, evaluator|
+    after(:build) do |gallery, evaluator|
+      if evaluator.projects_count > 0 && gallery.projects.empty?
         gallery.projects = FactoryGirl.create_list(:project, evaluator.projects_count)
       end
     end
