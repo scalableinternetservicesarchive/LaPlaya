@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20141115213215) do
     t.datetime "updated_at"
     t.integer  "project_id"
     t.integer  "user_id"
-    t.boolean  "deleted"
+    t.boolean  "deleted",    default: false
   end
 
   add_index "comments", ["project_id"], name: "index_comments_on_project_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20141115213215) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "thumbnail"
   end
 
   add_index "galleries", ["user_id"], name: "index_galleries_on_user_id"
