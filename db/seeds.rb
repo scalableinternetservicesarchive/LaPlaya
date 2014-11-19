@@ -18,6 +18,7 @@ Dir[Rails.root.join("db/seed_comment*.rb")].each {|f| require f}
 Dir[Rails.root.join("db/seed_galleries*.rb")].each {|f| require f}
 
 puts "\n*** Summary ***"
+puts "Created #{User.count} users."
 puts "Created #{Project.count} projects."
 puts "Created #{Comment.count} total comments."
 puts "Created #{Gallery.count} galleries."

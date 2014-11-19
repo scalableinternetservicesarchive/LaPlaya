@@ -1,4 +1,6 @@
 <h1>List of Projects</h1>
+<%= link_to 'New Project', new_project_path, class: 'btn btn-success btn-sm' %>
+<br/>
 
 <table>
   <thead>
@@ -23,8 +25,3 @@
   <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Project', new_project_path, class: 'btn btn-success btn-sm' %>
-<div></div><%= will_paginate @projects %></div>
