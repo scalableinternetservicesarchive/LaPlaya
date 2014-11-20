@@ -61,18 +61,25 @@ source 'http://rails-assets.org' do # This is bad, but https isn't verifying
   gem 'rails-assets-modernizr'
   #Admin hotkey enabler
   gem 'rails-assets-jeresig--jquery.hotkeys'
+
+
+  #Some problem with Gemfile.lock isn't pulling this in on prod, so lets manually get it
+  gem 'rails-assets-desandro--get-size'
 end
 
 
 #included anyways by bootstrap-sass, but lets require it for our project as well.
 gem 'autoprefixer-rails'
 
+## MOVED THESE GEMS OUT BECAUSE WE NEED THEM TO SEED DATA
+gem 'factory_girl_rails', '~> 4.4'
+gem 'faker', '~> 1.3'
+## END MOVED GEMS
+
 
 group :development, :test do
   gem 'sqlite3'
   gem 'dotenv-rails', '~> 0.11'
-  gem 'factory_girl_rails', '~> 4.4'
-  gem 'faker', '~> 1.3'
   gem 'rspec-rails', '~> 3.1'
   gem 'fuubar', '~> 2.0'
   gem 'rspec-expectations', '~> 3.1'

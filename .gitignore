@@ -18,7 +18,7 @@ public/system
 # AWS keys
 *.pem
 
-Gemfile.lock
+#Gemfile.lock
 *.pyc
 test-LaPlaya/**/*.xml*
 test-LaPlaya/**/*.log*
