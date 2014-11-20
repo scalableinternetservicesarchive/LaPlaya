@@ -22,10 +22,13 @@ Rails.application.routes.draw do
                  sessions: 'users/sessions',
                  registrations: 'users/registrations'
              },
-             skip: [:registrations]
+             skip: [:registrations, :sessions]
 
 
   root 'static_pages#home'
+  get 'signin', to: 'static_pages#home', as: 'new_user_session'
+
+
   namespace 'solid' do
     get 'index', to: 'solid#index'
     get 'about', to: 'solid#about'
@@ -42,14 +45,18 @@ Rails.application.routes.draw do
       get 'check_email', to: 'registrations#check_email'
       get 'check_password', to: 'registrations#check_password'
       post 'preregistration', to: 'registrations#preregistration'
-      post 'switch_user', to: 'sessions#switch_user'
     end
     namespace 'users', as: 'user_registration' do
       post '', to: 'registrations#create'
-      get 'edit', to: 'registrations#create'
+      get 'edit', to: 'registrations#edit'
       patch '', to: 'registrations#update'
       put '', to: 'registrations#update'
       delete '', to: 'registrations#destroy'
+    end
+    namespace 'users', as: '' do
+      post 'switch_user', to: 'sessions#switch_user', as: 'user_switch_user'
+      post 'sign_in', to: 'sessions#create', as: 'user_session'
+      delete 'sign_out', to: 'session#destroy', as: 'destroy_user_session'
     end
   end
 

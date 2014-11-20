@@ -1,4 +1,4 @@
-<%= form_tag new_user_session_path, id: 'signin-form', class: 'compact-form' do %>
+<%= form_tag user_session_path, id: 'signin-form', class: 'compact-form' do %>
     <h5 class="heading">Or sign in using your email</h5>
     <div class="form-group top">
       <%= text_field_tag 'user[email]', nil,
