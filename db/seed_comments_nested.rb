@@ -1,8 +1,7 @@
 # Given the existing projects,
-
+puts "\tCreating comments for projects..."
 users = User.all.to_a.each
 Project.all.each do |project|
-  puts "\tCreating comments for project id: #{project.id}..."
   current_comments = []
   def next_user(users)
     begin
