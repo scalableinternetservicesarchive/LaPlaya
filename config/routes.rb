@@ -56,7 +56,7 @@ Rails.application.routes.draw do
     namespace 'users', as: '' do
       post 'switch_user', to: 'sessions#switch_user', as: 'user_switch_user'
       post 'sign_in', to: 'sessions#create', as: 'user_session'
-      delete 'sign_out', to: 'session#destroy', as: 'destroy_user_session'
+      delete 'sign_out', to: 'sessions#destroy', as: 'destroy_user_session'
     end
   end
 
