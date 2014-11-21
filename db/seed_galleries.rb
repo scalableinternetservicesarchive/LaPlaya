@@ -1,7 +1,21 @@
 # Galleries
+@count = 0
+case ENV['SEED_SIZE']
+  when 'mini'
+    @count = 5
+  when 'small'
+    @count = 10
+  when 'medium'
+    @count = 30
+  when 'large'
+    @count = 100
+  else
+    @count = 0
+end
+
 puts "\tCreating galleries..."
 users = User.all.to_a.each
-15.times do
+@count.times do
   def next_user(user_list)
     begin
       user_list.next
