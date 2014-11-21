@@ -49,6 +49,8 @@
 
           <p><b>Author:</b> <%= link_to @project.author.username, profile_path(@project.author) %></p>
 
+          <p><b>Tags:</b> <%= @project.all_tags %></p>
+
         </div>
       </div>
     </div>

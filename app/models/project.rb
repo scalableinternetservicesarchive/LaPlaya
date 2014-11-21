@@ -8,6 +8,10 @@ class Project < ActiveRecord::Base
   has_many :liking_users, through: :project_likes, source: :user
   alias_attribute :likes, :project_likes_count
 
+  #Project Tags
+  has_many :taggings
+  has_many :tags, through: :taggings
+
   validates_presence_of :title
   validates_length_of :title, minimum: 5
   validates_presence_of :thumbnail
@@ -34,6 +38,16 @@ class Project < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def all_tags=(names)
+    self.tags = names.split(",").map do |name|
+      Tag.where(name: name.strip).first_or_create!
+    end
+  end
+
+  def all_tags
+    self.tags.map(&:name).join(", ")
   end
 
 end
