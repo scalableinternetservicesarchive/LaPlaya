@@ -25,5 +25,14 @@
   <% end %>
   </tbody>
 </table>
-<br/>
+
+<br>
+<div class="tags-cloud glassy-bg">
+  <h4>Popular Tags</h4>
+  <% tag_cloud Tag.counts, %w{tag-cloud1 tag-cloud2 tag-cloud3 tag-cloud4} do |tag, css_class| %>
+      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+  <% end %>
+</div>
+<br>
+
 <div></div><%= will_paginate @projects %></div>
