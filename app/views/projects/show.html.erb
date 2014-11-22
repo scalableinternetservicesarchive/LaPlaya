@@ -49,7 +49,11 @@
 
           <p><b>Author:</b> <%= link_to @project.author.username, profile_path(@project.author) %></p>
 
-          <p><b>Tags:</b> <%= @project.all_tags %></p>
+          <p><b>Tags:</b>
+            <% @project.tags.pluck(:name).each do |x| %>
+                <%= link_to x, tag_path(x), class: 'btn btn-xs btn-theme' %>
+            <% end %>
+          </p>
 
         </div>
       </div>

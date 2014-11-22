@@ -11,7 +11,11 @@ class ProjectsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @projects = Project.all
+    if params[:tag]
+      @projects = Project.tagged_with(params[:tag])
+    else
+      @projects = Project.all
+    end
     @projects = @projects.paginate(:page => params[:page], :per_page => 10)
   end
 

@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   get 'profile/:id', to: 'profiles#show', as: 'profile'
 
+  # projects with a specific tag
+  get 'tags/:tag', to: 'projects#index', as: "tag"
+
   devise_for :users,
              controllers: {
                  omniauth_callbacks: 'users/omniauth_callbacks',
