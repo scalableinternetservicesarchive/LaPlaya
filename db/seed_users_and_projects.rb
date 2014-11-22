@@ -2,7 +2,7 @@
 @count = 0
 case ENV['SEED_SIZE']
   when 'mini'
-    @count = 5
+    @count = 4
   when 'small'
     @count = 10
   when 'medium'
@@ -10,6 +10,7 @@ case ENV['SEED_SIZE']
   when 'large'
     @count = 100
   else
+    puts "Defaulting to no seed data"
     @count = 0
 end
 
