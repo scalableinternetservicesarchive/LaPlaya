@@ -6,7 +6,6 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w( modernizr.js )
-# Rails.application.config.assets.precompile += [/lightbox\/.*\.(png|gif)/]
-# Rails.application.config.assets.precompile += [/lightbox\.min\.map/]
+Rails.application.config.assets.precompile += %w( hoverex-all.js )
 Rails.application.config.assets.precompile += [/solid\/.*\.jpg/]
 Rails.application.config.assets.precompile += [/lightbox2\/img\/.*\.(png|gif)/]
