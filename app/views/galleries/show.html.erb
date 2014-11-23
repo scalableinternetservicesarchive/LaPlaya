@@ -25,6 +25,10 @@
   <!-- portfolio container -->
 </div><!--/Portfoliowrap -->
 
-<%= link_to 'Edit', edit_gallery_path(@gallery), class: 'btn btn-warning' %>
-<%= link_to 'Destroy', @gallery, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+<% if can? :edit, @gallery %>
+    <%= link_to 'Edit', edit_gallery_path(@gallery), class: 'btn btn-warning' %>
+<% end %>
+<% if can? :destroy, @gallery %>
+    <%= link_to 'Destroy', @gallery, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+<% end %>
 <%= link_to 'Back', galleries_path, class: 'btn btn-default' %>
