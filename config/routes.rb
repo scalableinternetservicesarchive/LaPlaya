@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
 
   root 'static_pages#home'
+  get 'test', to: 'static_pages#test'
   get 'signin', to: 'static_pages#home', as: 'new_user_session'
 
 

@@ -43,6 +43,7 @@ gem 'formtastic', '~> 2.0'
 gem 'formtastic-bootstrap', '~> 3.0'
 gem 'imagesLoaded_rails'
 
+
 # Let's get all of our pretty JS libraries from Bower! This gets updated way faster
 source 'http://rails-assets.org' do # This is bad, but https isn't verifying
   #To validate forms nicely
@@ -61,6 +62,10 @@ source 'http://rails-assets.org' do # This is bad, but https isn't verifying
   gem 'rails-assets-modernizr'
   #Admin hotkey enabler
   gem 'rails-assets-jeresig--jquery.hotkeys'
+
+  #Youtube videojs plugin
+  gem 'rails-assets-video.js'
+  gem 'rails-assets-videojs-youtube'
 
 
   #Some problem with Gemfile.lock isn't pulling this in on prod, so lets manually get it

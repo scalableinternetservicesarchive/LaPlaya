@@ -9,3 +9,4 @@ Rails.application.config.assets.precompile += %w( modernizr.js )
 # Rails.application.config.assets.precompile += %w( solid/hoverex-all.css )
 Rails.application.config.assets.precompile += [/solid\/.*\.jpg/]
 Rails.application.config.assets.precompile += [/lightbox2\/img\/.*\.(png|gif)/]
+Rails.application.config.assets.precompile += [/video\.js\/dist\/(font\/vjs\.(svg|eot|tff|woff)|video-js\/video-js.swf)/]

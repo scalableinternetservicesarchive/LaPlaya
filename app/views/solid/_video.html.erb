@@ -1,0 +1,25 @@
+<div class="video-js-box">
+  <video
+  id="<%= options[:id] %>"
+  class="<%= options[:classes] %> video-js vjs-default-skin"
+  <%= "controls" if !!options[:controls] %>
+  preload="<%= options[:preload] %>"
+  width="<%= options[:width] %>"
+  height="<%= options[:height] %>"
+  poster="<%= options[:poster] %>"
+  <% if options[:delay_for_youtube] == true %>
+  data-delayed-setup="<%= options[:setup] %>"
+  <% else %>
+  data-setup="<%= options[:setup] %>"
+  <% end %>
+  <%= "src=\"#{options[:src]}" if options[:src] %>
+  >
+    <% if options[:sources] %>
+        <%- options[:sources].each do |type, source| %>
+            <source src="<%= source %>" type='video/<%= type %>'/>
+        <%- end %>
+    <%- end %>
+
+    <p class="vjs-no-js"><%= options[:no_js] %></p>
+  </video>
+</div>

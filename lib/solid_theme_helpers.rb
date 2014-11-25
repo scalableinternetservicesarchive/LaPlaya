@@ -1,5 +1,30 @@
 module SolidThemeHelpers
 
+  def solid_video(*options, &blk)
+    setup_options = {
+        quality: '720p'
+    }
+    default_options = {
+        controls: true,
+        setup_options: setup_options,
+        preload: 'auto',
+        no_js: nil,
+        delay_for_youtube: true,
+        width: 'auto',
+        height: 'auto'
+    }
+    options = default_options.deep_merge(options.extract_options!)
+
+    options[:setup] ||= options[:setup_options].to_json
+
+    #If there is a block, capture it and render its content
+    if block_given?
+      options[:no_js] = capture(&blk)
+    end
+
+    render partial: 'solid/video', locals: {options: options}
+  end
+
   def solid_portfolio(options = {}, &block)
     wrapper_options = {class: 'portfolio'}
     if options[:wrapper_options]

@@ -1,0 +1,29 @@
+#= require video.js/video.js
+#= require videojs-youtube
+
+videojs.options.techOrder = ["youtube", "html5", "flash"]
+videojs.options.flash.swf = "<%= asset_url('video.js/dist/video-js/video-js.swf') %>"
+videojs.Youtube.isSupported = ->
+    false
+
+#On the dom load, add a new img tag and check to see if it loads alright, try to change Youtube supported if so.
+loadDelayed = ->
+    $(document).ready(->
+        $('video[data-delayed-setup').each(->
+            $(this).attr('data-setup', $(this).attr('data-delayed-setup'))
+            $(this).removeAttr('data-delayed-setup')
+            videojs(this)
+        )
+    )
+
+onURLBlocked("https://www.youtube.com/favicon.ico", ->
+    #error callback
+    videojs.Youtube.isSupported = ->
+        false
+    loadDelayed()
+, ->
+    #Success callback
+    videojs.Youtube.isSupported = ->
+        true
+    loadDelayed()
+)
