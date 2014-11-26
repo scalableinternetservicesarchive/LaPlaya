@@ -7,6 +7,24 @@ class ApplicationController < ActionController::Base
     '/users/sign_in'
   end
 
+  def access_denied_handler(exception)
+    log_exception "Access denied on #{exception.action} #{exception.subject.inspect}"
+    respond_to do |format|
+      format.html do
+        redirect_to root_path, alert: exception.message
+      end
+      format.js do
+        head :forbidden
+      end
+      format.json do
+        head :forbidden
+      end
+    end
+  end
+
+  rescue_from CanCan::AccessDenied, with: :access_denied_handler
+
+
   def sample_gallery_items
     [
         OpenStruct.new(
@@ -40,6 +58,12 @@ class ApplicationController < ActionController::Base
                 url: '/solid/single-project.html'
             })
     ]
+  end
+
+
+  private
+  def log_exception(message)
+    logger.info "#{message}, {requestURL #{request.path}, currentUserID #{(current_user && current_user.id) || 'nil'}}"
   end
 
 end

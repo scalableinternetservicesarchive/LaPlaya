@@ -36,10 +36,10 @@
         <div class="col-lg-12">
           <div class="spacing"></div>
           <h4>Project Details
-            <div class="pull-right">
+            <span class="pull-right">
               <%= @project.likes %>
               <%= heart_link %>
-            </div>
+            </span>
           </h4>
 
           <div class="hline"></div>
@@ -78,7 +78,7 @@
             <em>No comments yet</em><br/>
         <% end %>
         <br/>
-        <%= link_to 'Leave a comment', new_project_comments_path(@project), class: 'btn btn-primary btn-m' %>
+        <%= link_to 'Leave a comment', new_project_comments_path(@project), class: 'btn btn-primary btn-m' if can? :create, Comment %>
 
       </div>
     </div>

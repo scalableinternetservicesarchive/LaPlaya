@@ -6,11 +6,12 @@
       <div>Deleted Comment</div>
   <% else %>
       <div>
-        <i><%= comment.author.username %></i>
+        <strong><i><%= comment.author.username %></i></strong>
       </div>
       <div><%= comment.text %></div>
       <div>
-        <%= link_to 'Reply', new_project_comments_path(comment.project, comment), class: 'btn btn-xs btn-default' %>
+        <%= link_to 'Permalink', project_comments_path(comment.project, comment), class: 'btn btn-xs btn-default' %>
+        <%= link_to 'Reply', new_project_comments_path(comment.project, comment), class: 'btn btn-xs btn-default' if can? :create, Comment %>
         <%= link_to 'Delete', project_comment_path(comment.project, comment), class: 'btn btn-xs btn-danger', method: :delete, data: {confirm: 'Are you sure?'} if can? :destroy, comment %>
       </div>
   <% end %>

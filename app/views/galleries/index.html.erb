@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Gallery', new_gallery_path, class: 'btn btn-success btn-sm' %>
+<%= link_to 'New Gallery', new_gallery_path, class: 'btn btn-success btn-sm' if can? :create, Gallery %>
