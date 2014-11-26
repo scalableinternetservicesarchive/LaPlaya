@@ -51,7 +51,7 @@
 
           <p><b>Tags:</b>
             <% @project.tags.pluck(:name).each do |x| %>
-                <%= link_to x, tag_path(x), class: 'btn btn-xs btn-theme' %>
+                <%= link_to x, projects_path(tag: x), class: 'btn btn-xs btn-theme' %>
             <% end %>
           </p>
 

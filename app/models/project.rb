@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
   alias_attribute :likes, :project_likes_count
 
   #Project Tags
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
   validates_presence_of :title
