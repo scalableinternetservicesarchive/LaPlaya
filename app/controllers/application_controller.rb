@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def access_denied_handler(exception)
-    log_exception "Access denied on #{exception.action} #{exception.subject.inspect}"
+    log_exception "Access denied on #{exception.action} #{exception.subject.inspect}", exception
     respond_to do |format|
       format.html do
         redirect_to root_path, alert: exception.message
@@ -62,8 +62,10 @@ class ApplicationController < ActionController::Base
 
 
   private
-  def log_exception(message)
-    logger.info "#{message}, {requestURL #{request.path}, currentUserID #{(current_user && current_user.id) || 'nil'}}"
+  def log_exception(message, exception)
+    user_id = (current_user && current_user.id).to_s || 'nil'
+    logger.info "#{message}, {requestURL #{request.path}, currentUserID #{user_id}}"
+    NewRelic::Agent.notice_error(exception, uri: request.path, user_id: user_id)
   end
 
 end

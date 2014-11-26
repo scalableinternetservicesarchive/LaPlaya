@@ -232,8 +232,8 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'], display: 'popup'
-  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
+  config.omniauth :facebook, LaPlayaConfig.facebook_key , LaPlayaConfig.facebook_secret, display: 'popup', scope: 'email,public_profile'
+  # config.omniauth :google_oauth2, LaPlayaConfig.google_key, LaPlayaConfig.google_secret
 
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 

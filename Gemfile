@@ -76,6 +76,9 @@ gem 'factory_girl_rails', '~> 4.4'
 gem 'faker', '~> 1.3'
 ## END MOVED GEMS
 
+#Gives us some great tools for finding slowness
+gem 'newrelic_rpm'
+
 
 group :development, :test do
   gem 'sqlite3'
@@ -102,8 +105,6 @@ group :development do
   gem 'meta_request'
   gem 'rack-mini-profiler'
 
-  #Gives us some great tools for finding slowness
-  gem 'newrelic_rpm'
 
 end
 
@@ -114,5 +115,6 @@ group :production do
 
   #Tame down the rails logs a bit
   gem 'lograge'
+  gem 'rails_12factor'
 
 end

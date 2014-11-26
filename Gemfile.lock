@@ -208,12 +208,12 @@ GEM
       rails-assets-get-style-property (~> 1.0)
       rails-assets-matches-selector (~> 1.0)
     rails-assets-retina.js (1.3.0)
-    railties (4.1.7)
-      actionpack (= 4.1.7)
-      activesupport (= 4.1.7)
+    railties (4.1.8)
+      actionpack (= 4.1.8)
+      activesupport (= 4.1.8)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.3.2)
+    rake (10.4.0)
     rdoc (4.1.2)
       json (~> 1.4)
     ref (1.0.5)
@@ -323,6 +323,7 @@ DEPENDENCIES
   rails-assets-lightbox2!
   rails-assets-modernizr!
   rails-assets-retina.js!
+  rails_12factor
   rspec-collection_matchers (~> 1.1)
   rspec-expectations (~> 3.1)
   rspec-its (~> 1.1)
