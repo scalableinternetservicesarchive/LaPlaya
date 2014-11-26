@@ -8,10 +8,15 @@ class ApplicationController < ActionController::Base
   end
 
   def access_denied_handler(exception)
-    log_exception "Access denied on #{exception.action} #{exception.subject.inspect}", exception
+    if exception.is_a? CanCan::AccessDenied
+      log_exception "CanCan access denied on #{exception.action} #{exception.subject.inspect}", exception
+    else
+      log_exception exception.message, exception
+    end
     respond_to do |format|
       format.html do
-        redirect_to root_path, alert: exception.message
+        # Just give a generic error message. We don't want to tell people more than they need to know.
+        redirect_to root_path, alert: 'You are not authorized to access that page'
       end
       format.js do
         head :forbidden
@@ -23,6 +28,8 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied, with: :access_denied_handler
+
+  rescue_from ActiveRecord::RecordNotFound, with: :access_denied_handler
 
 
   def sample_gallery_items

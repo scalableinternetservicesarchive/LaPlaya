@@ -1,3 +1,5 @@
+require 'ostruct'
+
 $:.unshift File.expand_path('../lib', __FILE__)
 require 'csv'
 require 'yaml'
@@ -26,6 +28,8 @@ def load_configuration()
   env = local_config['env'] || host_config['env'] || ENV['RACK_ENV'] || ENV['RAILS_ENV'] || 'development'
   env_config = global_config['environments'][env] || {}
 
+  secret_key_base = local_config['secret_key_base'] || host_config['secret_key_base'] || ENV['SECRET_KEY_BASE'] || nil
+
   rack_env = env.to_sym
 
   {
@@ -40,7 +44,8 @@ def load_configuration()
       'facebook_key'                => '1484943711771376',
       'facebook_secret'             => '449396682aca4316b39009e017fdddc2',
       'google_key'                  => '',
-      'google_secret'               => ''
+      'google_secret'               => '',
+      'secret_key_base'             => secret_key_base
 
   }.tap do |config|
     raise "'#{rack_env}' is not known environment." unless config['rack_envs'].include?(rack_env)
