@@ -1,12 +1,20 @@
 @import "bootstrap/variables";
 
-
 a.empty-link {
   cursor: pointer;
 }
 
 #whole-body {
   margin-top: 36px;
+  @media (max-width: $grid-float-breakpoint) {
+    margin-top: 51px;
+  }
+  &.announcement-margin {
+    margin-top: 102px;
+    @media (max-width: $grid-float-breakpoint) {
+      margin-top: 117px;
+    }
+  }
 }
 
 form.compact-form {
@@ -83,11 +91,6 @@ form.compact-form {
   border-width: 1px;
 }
 
-@media (max-width: #{$screen-sm-min - 1}) {
-  #whole-body {
-    margin-top: 51px;
-  }
-}
 
 @media (min-width: $screen-sm-min) {
   div.modal-dialog {
@@ -97,6 +100,11 @@ form.compact-form {
 
 .navbar-brand {
   height: inherit !important;
+
+  @media(max-width: $grid-float-breakpoint) {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+  }
 }
 
 .navbar {
@@ -105,36 +113,27 @@ form.compact-form {
 }
 
 div.flashes {
-  position: fixed;
+  position: absolute;
   z-index: 1000;
-  top: 50px;
-}
+  margin-top: 16px;
 
-@media (min-width: $screen-sm-min) {
-  div.flashes {
+  @media (min-width: $screen-sm-min) {
     left: calc(50% - #{$container-sm/2});
   }
-}
 
-@media (min-width: $screen-md-min) {
-  div.flashes {
+  @media (min-width: $screen-md-min) {
     left: calc(50% - #{$container-md/2});
   }
-}
 
-@media (min-width: $screen-lg-min) {
-  div.flashes {
+  @media (min-width: $screen-lg-min) {
     left: calc(50% - #{$container-lg/2});
   }
-}
 
-@media (max-width: #{$screen-sm-min - 1}) {
-  div.flashes {
-    left: 0px;
-    margin-left: 5px;
+  @media (max-width: $screen-xs-max) {
+    left: 0;
+    margin-left: 0;
     margin-right: 5px;
     width: 100%;
-    top: 65px;
   }
 }
 

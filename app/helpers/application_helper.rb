@@ -9,6 +9,7 @@ module ApplicationHelper
   end
 
   def alert_class_for_type(type)
+    logger.debug "Processing flash of type #{type}"
     if %w(alert error).include?(type)
       'alert-danger'
     elsif %w(alert error).include?(type)

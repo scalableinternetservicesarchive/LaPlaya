@@ -21,7 +21,7 @@
 
 <div class="container mt">
   <div class="panel panel-default">
-    <%= render partial: 'panel_header', locals: {title: 'Recent Projects', target: 'recent-projects'} %>
+    <%= render partial: 'static_pages/panel_header', locals: {title: 'Recent Projects', target: 'recent-projects'} %>
     <%= solid_portfolio wrapper_options: {class: 'panel-collapse collapse in portfolio', id: 'recent-projects'} do %>
         <% @projects.each do |project| %>
             <%= solid_portfolio_item project.title,
@@ -36,7 +36,7 @@
 </div>
 <div class="container mt">
   <div class="panel panel-default">
-    <%= render partial: 'panel_header', locals: {title: 'Recent Galleries', target: 'recent-galleries'} %>
+    <%= render partial: 'static_pages/panel_header', locals: {title: 'Recent Galleries', target: 'recent-galleries'} %>
     <%= solid_portfolio wrapper_options: {class: 'panel-collapse collapse in portfolio', id: 'recent-galleries'} do %>
         <% @galleries.each do |gallery| %>
             <%= solid_portfolio_item gallery.title,

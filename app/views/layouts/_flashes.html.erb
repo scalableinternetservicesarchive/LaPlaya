@@ -6,6 +6,7 @@
       </div>
       <% flash.each do |key, value| %>
           <% klass = alert_class_for_type(key) %>
+          <% logger.debug "Flash resulted in type #{klass}" %>
           <% if klass %>
               <%= content_tag(:div, class: "alert alert-dismissible #{klass} fade in") do %>
                   <button type="button" class="close" data-dismiss="alert">

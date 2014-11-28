@@ -7,6 +7,7 @@ class StaticPagesController < ApplicationController
 
     @projects = Project.all.order(updated_at: :desc).limit(8)
     @galleries = Gallery.all.order(updated_at: :desc).limit(8)
+    flash.now['notice'] = 'test'
 
   end
 

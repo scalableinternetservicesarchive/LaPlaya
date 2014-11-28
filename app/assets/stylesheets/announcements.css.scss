@@ -1,12 +1,16 @@
-#starburst-announcement {
-  width: 100%;
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+#announcements {
   background-color: #F1F094;
   border-bottom: solid 1px black;
   padding: 10px 0;
-  text-align: center;
-  a {
-    font-size: 12px;
-    margin-left: 5px;
-    color: #6E5910;
+  div.starburst-announcement {
+    #starburst-close {
+      font-size: 12px;
+      margin-left: 5px;
+      color: #6E5910;
+      float: right
+    }
   }
 }

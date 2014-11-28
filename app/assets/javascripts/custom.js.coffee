@@ -2,7 +2,7 @@ root = exports ? this
 
 
 jQueryDocumentSelectors = () ->
-  solidPortfolio()
+  root.solidPortfolio()
   #For any anchor link, we can smoothscroll it by adding a .smoothscroll to its classes
   $('a[href^="#"].smoothscroll').on('click', (e) ->
     e.preventDefault()
@@ -69,6 +69,7 @@ jQueryDocumentSelectors = () ->
 
   root.switchSigninModalToClass = switchToClass
 
+  #reset modal when hiding/showing
   modal.on('show.bs.modal', (e) ->
     switchToClass('signin')
     modal.find('form').each(->
@@ -206,7 +207,10 @@ jQueryDocumentSelectors = () ->
     )
   root.validateFinishForm()
 
+
 $(document).ready(jQueryDocumentSelectors)
+
+
 
 
 #Javascript from the Solid theme for their portfolio gallery

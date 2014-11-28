@@ -10,12 +10,28 @@ RSpec.describe User, :type => :model do
     expect(FactoryGirl.build(:user, username: nil)).to_not be_valid
   end
 
+  it 'is invalid with a short username' do
+    expect(FactoryGirl.build(:user, username: 'a'*3)).to_not be_valid
+  end
+
+  it 'is invalid with a long username' do
+    expect(FactoryGirl.build(:user, username: 'a'*27)).to_not be_valid
+  end
+
   it 'is invalid without a email' do
     expect(FactoryGirl.build(:user, email: nil)).to_not be_valid
   end
 
+  it 'is invalid with an invalid a email' do
+    expect(FactoryGirl.build(:user, email: 'test@bar')).to_not be_valid
+  end
+
   it 'is invalid without a password' do
     expect(FactoryGirl.build(:user, password: nil)).to_not be_valid
+  end
+
+  it 'is invalid with a short password' do
+    expect(FactoryGirl.build(:user, password: 'a'*7)).to_not be_valid
   end
 
   it 'is invalid when the password and confirmation differ' do
@@ -40,6 +56,25 @@ RSpec.describe User, :type => :model do
     it { should respond_to(:provider) }
     it { should respond_to(:uid) }
     it { should respond_to(:super_admin?) }
+    it { should respond_to(:liked_projects) }
+    it { should respond_to(:projects) }
+
+    describe 'another user with the same username' do
+      before do
+        @second_user = FactoryGirl.build(:user, username: @user.username)
+      end
+      subject { @second_user }
+      it { should_not be_valid }
+    end
+
+    describe 'another user with the same email' do
+      before do
+        @second_user = FactoryGirl.build(:user, email: @user.email)
+      end
+      subject { @second_user }
+      it { should_not be_valid }
+    end
+
 
   end
 

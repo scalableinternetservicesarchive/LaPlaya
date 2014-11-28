@@ -1,8 +1,7 @@
 <body <%= content_for?(:body_attributes) ? yield(:body_attributes) : '' %>>
 <%= render 'header' %>
 <%= content_for?(:pre_container) ? yield(:pre_container) : '' %>
-<div id="whole-body">
-  <%= render 'layouts/flashes' %>
+<div id="whole-body" <%= 'class=announcement-margin' if current_announcement %>>
   <div id="main-body" class="<%= controller_classes %>">
     <%= yield %>
   </div>

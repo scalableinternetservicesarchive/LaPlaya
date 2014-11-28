@@ -1,0 +1,28 @@
+<% if resource.saved? %>
+    <div id="headerwrap">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2">
+            <h3>Thank you for signing up!.</h3>
+          </div>
+        </div>
+        <!-- /row -->
+      </div>
+      <!-- /container -->
+    </div><!-- /headerwrap -->
+
+<% else %>
+    <% @force_show_finish = true; force_login_helper %>
+
+    <div id="headerwrap">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2">
+            <h3>There was an issue creating your account.</h3>
+          </div>
+        </div>
+        <!-- /row -->
+      </div>
+      <!-- /container -->
+    </div><!-- /headerwrap -->
+<% end %>

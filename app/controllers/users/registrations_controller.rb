@@ -38,59 +38,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def create
-    build_resource(sign_up_params)
-
-    resource_saved = resource.save
-    yield resource if block_given?
-    if resource_saved
-      if resource.active_for_authentication?
-        set_flash_message :notice, :signed_up if is_flashing_format?
-        sign_up(resource_name, resource)
-        respond_to do |format|
-          format.js do
-            render js: "window.location=\"#{after_sign_up_path_for(resource)}\";"
-          end
-          format.html do
-            redirect_to after_sign_up_path_for(resource)
-          end
-        end
-      else
-        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
-        expire_data_after_sign_in!
-        respond_to do |format|
-          format.js do
-            render js: "window.location=\"#{after_inactive_sign_up_path_for(resource)}\";"
-          end
-          format.html do
-            redirect_to after_inactive_sign_up_path_for(resource)
-          end
-        end
-      end
-    else
-      clean_up_passwords resource
-      @validatable = devise_mapping.validatable?
-      if @validatable
-        @minimum_password_length = resource_class.password_length.min
-      end
-      respond_to do |format|
-        format.js do
-          @new_user = resource
-          js false
-          render status: 422
-        end
-        format.json do
-          respond_with resource
-        end
-        format.html do
-          @force_show_finish = true
-          @new_user = resource
-          render 'static_pages/home', status: 422
+  def respond_with(*resources, &block)
+    if resources[0] && resources[0].is_a?(User)
+      user = resources[0]
+      if user.persisted?
+        options = resources.extract_options!
+        if options[:location]
+          return redirect_to options[:location]
         end
       end
     end
+    super
   end
-
 
   private
   def sign_up_params
