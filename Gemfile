@@ -41,7 +41,10 @@ gem 'font-awesome-rails'
 gem 'bootstrap-sass'
 gem 'formtastic', '~> 2.0'
 gem 'formtastic-bootstrap', '~> 3.0'
-gem 'imagesLoaded_rails'
+
+#Site Wide Announcements
+gem 'starburst', github: 'jhenkens/starburst'
+
 
 # Let's get all of our pretty JS libraries from Bower! This gets updated way faster
 source 'http://rails-assets.org' do # This is bad, but https isn't verifying
@@ -62,7 +65,6 @@ source 'http://rails-assets.org' do # This is bad, but https isn't verifying
   #Admin hotkey enabler
   gem 'rails-assets-jeresig--jquery.hotkeys'
 
-
   #Some problem with Gemfile.lock isn't pulling this in on prod, so lets manually get it
   gem 'rails-assets-desandro--get-size'
 end
@@ -78,6 +80,8 @@ gem 'faker', '~> 1.3'
 
 #Gives us some great tools for finding slowness
 gem 'newrelic_rpm'
+#Suggest users to upgrade their browser if they are using old versions
+gem 'browser'
 
 
 group :development, :test do

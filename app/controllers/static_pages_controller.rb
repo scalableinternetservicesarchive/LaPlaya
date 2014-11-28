@@ -10,4 +10,7 @@ class StaticPagesController < ApplicationController
 
   end
 
+  def upgrade
+  end
+
 end

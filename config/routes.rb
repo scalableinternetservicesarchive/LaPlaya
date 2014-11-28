@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  #Static Pages
+  root 'static_pages#home'
+  get 'upgrade', to: 'static_pages#upgrade'
+
+
   resources :galleries
 
   resources :projects do
@@ -25,19 +30,9 @@ Rails.application.routes.draw do
              skip: [:registrations, :sessions]
 
 
-  root 'static_pages#home'
   get 'signin', to: 'static_pages#home', as: 'new_user_session'
 
 
-  namespace 'solid' do
-    get 'index', to: 'solid#index'
-    get 'about', to: 'solid#about'
-    get 'contact', to: 'solid#contact'
-    get 'blog', to: 'solid#blog'
-    get 'portfolio', to: 'solid#portfolio'
-    get 'single-post', to: 'solid#single_post'
-    get 'single-project', to: 'solid#single_project'
-  end
 
   devise_scope :user do
     namespace 'users', as: 'user' do
@@ -58,6 +53,20 @@ Rails.application.routes.draw do
       post 'sign_in', to: 'sessions#create', as: 'user_session'
       delete 'sign_out', to: 'sessions#destroy', as: 'destroy_user_session'
     end
+  end
+
+  #Announcement reading
+  mount Starburst::Engine => '/starburst'
+
+  #Routes to showcase solid layout
+  namespace 'solid' do
+    get 'index', to: 'solid#index'
+    get 'about', to: 'solid#about'
+    get 'contact', to: 'solid#contact'
+    get 'blog', to: 'solid#blog'
+    get 'portfolio', to: 'solid#portfolio'
+    get 'single-post', to: 'solid#single_post'
+    get 'single-project', to: 'solid#single_project'
   end
 
 end
