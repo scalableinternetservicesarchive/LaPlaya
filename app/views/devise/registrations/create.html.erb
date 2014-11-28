@@ -1,4 +1,4 @@
-<% if resource.saved? %>
+<% if resource.persisted? %>
     <div id="headerwrap">
       <div class="container">
         <div class="row">
@@ -13,7 +13,7 @@
 
 <% else %>
     <% @force_show_finish = true; force_login_helper %>
-
+    <% @new_user = resource %>
     <div id="headerwrap">
       <div class="container">
         <div class="row">

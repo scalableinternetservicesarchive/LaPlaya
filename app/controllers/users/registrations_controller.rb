@@ -5,8 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     respond_to do |format|
       format.js do
         js false
-        session['devise.auth_method'] = 'password'
-        session['devise.preregistration'] = params.require(:user).permit(:email, :password, :password_confirmation)
+        session['devise.user_attributes'] = params.require(:user).permit(:email, :password, :password_confirmation)
       end
     end
   end
@@ -52,19 +51,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
-  def sign_up_params
-    if session['devise.auth_method'] == 'password'
-      params = super.to_hash
-      prereg_params = session['devise.preregistration']
-      if prereg_params.is_a? Hash
-        params.reverse_merge!(prereg_params)
-      end
-      params
-    else
-      super
-    end
-  end
-
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up).push(:username)
   end

@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_length_of :username, minimum: 4, maximum: 26
 
+  validates_presence_of :provider, if: 'uid.present?'
+  validates_presence_of :uid, if: 'provider.present?'
+
   #Project Likes
   has_many :project_likes, dependent: :destroy
   has_many :liked_projects, through: :project_likes, source: :project
@@ -29,36 +32,17 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.new_with_session(params, session)
+  def self.new_with_session(params, session = {})
     if session['devise.user_attributes']
       new(session['devise.user_attributes']) do |user|
-        user.password = Devise.friendly_token[0,20]
+        user.password ||= Devise.friendly_token[0,20]
         user.attributes = params
         user.valid?
       end
     else
-      super
+      new(params)
     end
   end
-  #   super.tap do |user|
-  #     if session['devise.user_attributes']
-  #     if session['devise.auth_method'] && session['devise.auth_method'].starts_with?('devise.omniauth')
-  #       auth_method = session['devise.auth_method']
-  #       data = session[auth_method]
-  #       user.provider = data['provider']
-  #       user.uid = data['uid']
-  #       case(auth_method)
-  #         when 'devise.omniauth.facebook_data'
-  #           if data && data['extra']['raw_info']
-  #             user.email = data['extra']['raw_info']['email'] if user.email.blank?
-  #           end
-  #           user.password = Devise.friendly_token[0,20] if user.password.blank?
-  #         else
-  #           # type code here
-  #       end
-  #     end
-  #   end
-  # end
 
   def self.username_is_valid?(username)
     errors = User.new(username: username)

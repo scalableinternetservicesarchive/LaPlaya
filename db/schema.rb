@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128011716) do
+ActiveRecord::Schema.define(version: 20141128202701) do
 
   create_table "comments", force: true do |t|
     t.text     "text"
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 20141128011716) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "starburst_announcement_views", ["user_id", "announcement_id"], name: "starburst_announcement_view_index", unique: true
 
   create_table "starburst_announcements", force: true do |t|
     t.text     "title"

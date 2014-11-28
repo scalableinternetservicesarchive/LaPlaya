@@ -43,7 +43,7 @@ gem 'formtastic', '~> 2.0'
 gem 'formtastic-bootstrap', '~> 3.0'
 
 #Site Wide Announcements
-gem 'starburst', github: 'jhenkens/starburst'
+gem 'starburst', github: 'jhenkens/starburst', branch: 'master'
 
 
 # Let's get all of our pretty JS libraries from Bower! This gets updated way faster

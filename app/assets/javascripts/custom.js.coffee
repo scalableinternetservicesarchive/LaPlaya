@@ -63,8 +63,13 @@ jQueryDocumentSelectors = () ->
 
     if from_form && populate
       to_form.each(->
-        $(this).find('input.email').val(from_form.find('input.email').val())
-        $(this).find('input.password').val(from_form.find('input.password').val())
+        email_selector = 'input[name="user[email]"]'
+        password_selector = 'input[name="user[password]"]'
+        $(this).find(email_selector).val(from_form.find(email_selector).val())
+        $(this).find(password_selector).val(from_form.find(password_selector).val())
+        validator = $(this).data('bootstrapValidator')
+        if validator
+          validator.validate()
       )
 
   root.switchSigninModalToClass = switchToClass
