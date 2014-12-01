@@ -15,7 +15,7 @@ class CPCreateUser(FunkLoadTestCase):
         """Setting up test."""
         self.server_url = self.conf_get('main', 'url')
 
-    def test_critical_path(self):
+    def test_signup_path(self):
         server_url = self.server_url
         self.get(server_url, description="View the user signup page")
 
@@ -34,7 +34,7 @@ class CPCreateUser(FunkLoadTestCase):
               ['commit', 'Sign up']],
             description="Create New User")
 
-    def test_critical_path_readonly(self):
+    def test_readonly_view_projects(self):
         server_url = self.server_url
         self.get(server_url, description='View root URL')
 

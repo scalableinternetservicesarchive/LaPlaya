@@ -202,7 +202,7 @@ RSpec.describe User, :type => :model do
 
       it 'should have been generated a password' do
         expect(@user.password).to be_present
-        expect(@user.password.length).to be >= 8
+        expect(@user.password.length).to be
       end
 
       it 'should have its unique attributes set from the params' do
