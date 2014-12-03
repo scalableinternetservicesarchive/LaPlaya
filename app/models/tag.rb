@@ -5,7 +5,7 @@ class Tag < ActiveRecord::Base
   validates_uniqueness_of :name
 
   def self.counts
-    self.select("name, taggings_count as count")
+    self.select('name, taggings_count as count')
   end
 
 end

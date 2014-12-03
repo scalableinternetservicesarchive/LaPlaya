@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141128202701) do
+ActiveRecord::Schema.define(version: 20141203213539) do
 
   create_table "comments", force: true do |t|
     t.text     "text"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20141128202701) do
     t.integer "project_id"
   end
 
-  create_table "project_likes", id: false, force: true do |t|
+  create_table "project_likes", force: true do |t|
     t.integer "project_id"
     t.integer "user_id"
   end
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20141128202701) do
     t.text     "category"
   end
 
-  create_table "taggings", id: false, force: true do |t|
+  create_table "taggings", force: true do |t|
     t.integer "project_id"
     t.integer "tag_id"
   end
