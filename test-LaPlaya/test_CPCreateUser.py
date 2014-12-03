@@ -28,16 +28,20 @@ class CPCreateUser(FunkLoadTestCase):
 
         self.addMetadata(**{'auth_token': auth_token})
 
-        for x in range(0, 3):
-            self.get(self.server_url + '/users/check_username.json',
-                     params=[['username', Lipsum().getWord()]],
-                     description='Check username availability')
-            self.get(self.server_url + '/users/check_email.json',
-                     params=[['username', Lipsum().getWord() + "@" + Lipsum().getWord()]],
-                     description='Check email availability')
-            self.get(self.server_url + '/users/check_password.json',
-                     params=[['username', Lipsum().getWord()]],
-                     description='Check password availability')
+        # As a user is filling out the form, various elements will be checked using AJAX
+        # These lines simulate that
+        # 4 username checks, as username has no client-side gating
+        [self.get(self.server_url + '/users/check_username.json',
+                  params=[['username', Lipsum().getWord()]],
+                  description='Check username availability') for _ in range(4)]
+        # 1 email check, as emails are gated until they are determined valid via js on clientside
+        [self.get(self.server_url + '/users/check_email.json',
+                  params=[['username', Lipsum().getWord() + "@" + Lipsum().getWord()]],
+                   description='Check email availability') for _ in range(1)]
+        # 2 password checks, as password is gated until 8 characters
+        [self.get(self.server_url + '/users/check_password.json',
+                  params=[['username', Lipsum().getWord()]],
+                  description='Check password availability') for _ in range(2)]
 
         self.post(self.server_url + "/users",
                   params=[['user[email]', email],

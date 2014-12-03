@@ -6,14 +6,13 @@ import random
 from funkload.FunkLoadTestCase import FunkLoadTestCase
 from funkload.utils import extract_token
 from funkload.Lipsum import Lipsum
+from LaPlayaFunkloadHelper import LaPlayaFunkloadHelper
 
 
-class CPComments(FunkLoadTestCase):
-    """This test uses a configuration file CPComments.conf."""
-
+class CPComments(LaPlayaFunkloadHelper):
+    """This test uses a configuration file CPShowProjects.conf."""
     def setUp(self):
-        """Setting up test."""
-        self.server_url = self.conf_get('main', 'url')
+        LaPlayaFunkloadHelper.setUp(self)
 
     def test_readonly_view_comment(self):
         server_url = self.server_url
