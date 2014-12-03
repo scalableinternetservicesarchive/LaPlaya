@@ -182,7 +182,7 @@ GEM
       rails-assets-get-style-property (~> 1.0)
     rails-assets-doc-ready (1.0.4)
       rails-assets-eventie (~> 1.0.3)
-    rails-assets-eventEmitter (4.2.9)
+    rails-assets-eventEmitter (4.2.10)
     rails-assets-eventie (1.0.5)
     rails-assets-font-awesome (4.2.0)
     rails-assets-get-size (1.2.2)
