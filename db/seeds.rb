@@ -13,6 +13,7 @@ User.delete_all
 Project.delete_all
 Comment.delete_all
 Gallery.delete_all
+Tag.delete_all
 
 puts 'Starting seeding.'
 Dir[Rails.root.join("db/seed_user*.rb")].each {|f| require f}
