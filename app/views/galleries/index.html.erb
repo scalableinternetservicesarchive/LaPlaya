@@ -1,5 +1,6 @@
 <h1>Listing galleries</h1>
 
+<%= link_to 'New Gallery', new_gallery_path, class: 'btn btn-success btn-sm' if can? :create, Gallery %>
 <table>
   <thead>
   <tr>
@@ -23,7 +24,3 @@
   <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Gallery', new_gallery_path, class: 'btn btn-success btn-sm' if can? :create, Gallery %>

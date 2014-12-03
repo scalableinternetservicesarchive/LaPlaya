@@ -13,16 +13,10 @@
     </div>
     <div class="navbar-collapse collapse navbar-right">
       <ul class="nav navbar-nav">
+        <%= nav_link 'HOME', root_path %>
+        <%= nav_link 'PROJECTS', projects_path %>
+        <%= nav_link 'GALLERIES', galleries_path %>
         <% if user_signed_in? %>
-            <%= nav_link 'HOME', root_path %>
-            <%= nav_link 'ABOUT', '#' %>
-            <%= nav_link 'CONTACT', '#' %>
-            <%= nav_dropdown 'PAGES ' do %>
-                <%= nav_link('BLOG', '#') %>
-                <%= nav_link('SINGLE POST', '#') %>
-                <%= nav_link('PORTFOLIO', '#') %>
-                <%= nav_link('SINGLE PROJECT', '#') %>
-            <% end %>
             <%= nav_dropdown current_user.username do %>
                 <%= nav_link 'My Profile', profile_path(current_user) %>
                 <%= nav_link 'Sign Out', destroy_user_session_path, method: :delete %>
