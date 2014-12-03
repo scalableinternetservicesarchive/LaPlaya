@@ -30,6 +30,6 @@ When generating actual data that we want to record, we should run funkload on AW
 
 **Remember** to update the URL's in the `*.conf` files when we create new application stacks as well
 
-### Cleanup
+## Cleanup
 
 Funkload generates a lot of files which could make this directory very crowded. When you run the tests/benchmarks multiple times it creates backups of previous xml files. To cleanup these, and only keep the most recent xml files, use `sh clean_backups.sh`. To clean up all artifacts, and only keep our test and conf files, use `sh clean_all.sh`, but **do not do this until AFTER you have generated any reports**. You need the xml files for that.
