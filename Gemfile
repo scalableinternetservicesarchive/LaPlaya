@@ -119,6 +119,6 @@ group :production do
 
   #Tame down the rails logs a bit
   gem 'lograge'
-  gem 'rails_12factor'
+  #gem 'rails_12factor'
 
 end
