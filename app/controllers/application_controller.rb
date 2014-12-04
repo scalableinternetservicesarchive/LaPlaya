@@ -2,7 +2,14 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  if Rails.env.development?
+    before_action :log_current_user
+  end
   helper Starburst::AnnouncementsHelper
+
+  def log_current_user
+    logger.debug "Current user: #{current_user && current_user.id}"
+  end
 
   def sign_in_path
     '/users/sign_in'
