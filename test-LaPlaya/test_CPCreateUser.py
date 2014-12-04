@@ -4,29 +4,29 @@ $Id$
 import unittest
 import random
 from funkload.FunkLoadTestCase import FunkLoadTestCase
+from LaPlayaFunkloadHelper import LaPlayaFunkloadHelper
 from funkload.utils import extract_token
 from funkload.Lipsum import Lipsum
 
 
-class CPCreateUser(FunkLoadTestCase):
+class CPCreateUser(LaPlayaFunkloadHelper):
     """This test uses a configuration file Simple.conf."""
 
     def setUp(self):
         """Setting up test."""
         self.server_url = self.conf_get('main', 'url')
 
-    def test_signup_path(self):
+    def test_logged_out_signup_path(self):
         server_url = self.server_url
         # Get homepage
         self.get(server_url, description="View the home page")
 
 
         # Fill out manual signup form
-        auth_token = extract_token(self.getBody(), 'name="authenticity_token" type="hidden" value="', '"')
         email = Lipsum().getUniqWord() + "@" + Lipsum().getWord() + ".com"
         username = Lipsum().getUniqWord()
 
-        self.addMetadata(**{'auth_token': auth_token})
+        auth_token = self.setAuthToken()
 
         # As a user is filling out the form, various elements will be checked using AJAX
         # These lines simulate that

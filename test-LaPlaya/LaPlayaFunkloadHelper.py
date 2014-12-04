@@ -14,7 +14,7 @@ class LaPlayaFunkloadHelper(FunkLoadTestCase):
         """Setting up test."""
         self.server_url = self.conf_get('main', 'url')
         self.logd("Inside setup for " + self.test_name)
-        if self.test_name.find('test_readonly') != 0:
+        if self.test_name.find('test_readonly') != 0 and self.test_name.find('test_logged_out') != 0:
             self.logi("Logging in during setup for " + self.test_name)
             self.registerAndLogin()
 
