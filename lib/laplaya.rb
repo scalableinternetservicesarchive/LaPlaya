@@ -40,7 +40,7 @@ def load_configuration()
       'rack_envs'                   => [:development, :production, :staging, :test],
       'root_dir'                    => root_dir,
       'username'                    => username,
-      'newrelic_license_key'        => '237a983637ad3084d53c889ed49f51c5a4e281ae',
+      'newrelic_license_key'        => 'cc8bd845d9878d91ab12e867867d797fd3aa5031',
       'facebook_key'                => '1484943711771376',
       'facebook_secret'             => '449396682aca4316b39009e017fdddc2',
       'google_key'                  => '',
