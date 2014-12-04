@@ -3,6 +3,7 @@ $Id$
 """
 import unittest
 import random
+import re
 from funkload.FunkLoadTestCase import FunkLoadTestCase
 from funkload.utils import extract_token
 from funkload.Lipsum import Lipsum
@@ -17,14 +18,21 @@ class LaPlayaFunkloadHelper(FunkLoadTestCase):
             self.logi("Logging in during setup for " + self.test_name)
             self.registerAndLogin()
 
+    def setAuthToken(self):
+        regex = re.compile('content="([^"]+)"\s+name="csrf-token"')
+        auth_token = regex.search(self.getBody()).group(1)
+        self.addMetadata(**{'auth_token': auth_token})
+        return auth_token
+
+
     """This test uses a configuration file CPShowProjects.conf."""
     def registerAndLogin(self):
         self.get(self.server_url, description="View the home page")  # Fill out manual signup form
-        auth_token = extract_token(self.getBody(), 'name="authenticity_token" type="hidden" value="', '"')
+
         email = Lipsum().getUniqWord() + "@" + Lipsum().getWord() + ".com"
         username = Lipsum().getUniqWord()
 
-        self.addMetadata(**{'auth_token': auth_token})
+        self.setAuthToken()
 
         self.post(self.server_url + "/users",
                   params=[['user[email]', email],
