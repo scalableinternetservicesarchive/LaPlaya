@@ -24,6 +24,11 @@ class LaPlayaFunkloadHelper(FunkLoadTestCase):
         self.addMetadata(**{'auth_token': auth_token})
         return auth_token
 
+    def makeParams(self):
+        params = [
+            ['authenticity_token', self.setAuthToken()]
+        ]
+        return params
 
     """This test uses a configuration file CPShowProjects.conf."""
     def registerAndLogin(self):
@@ -32,13 +37,11 @@ class LaPlayaFunkloadHelper(FunkLoadTestCase):
         email = Lipsum().getUniqWord() + "@" + Lipsum().getWord() + ".com"
         username = Lipsum().getUniqWord()
 
-        self.setAuthToken()
-
         self.post(self.server_url + "/users",
                   params=[['user[email]', email],
                           ['user[password]', 'alphabet'],
                           ['user[password_confirmation]', 'alphabet'],
                           ['user[username]', username],
-                          ['authenticity_token', auth_token],
+                          ['authenticity_token', self.setAuthToken()],
                           ['commit', 'Sign up']],
                   description="Create New User")
