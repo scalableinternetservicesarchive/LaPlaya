@@ -23,7 +23,9 @@ module ProjectsHelper
   end
 
   def tag_cloud(tags, classes)
-    max = [1,tags.sort_by(&:count).last.count].max
+    max = tags.sort_by(&:count).last
+    max = (max && max.count) || 1
+    max = [1,max].max
     tags.take(10).each do |tag|
       index = tag.count.to_f / max * (classes.size-1)
       yield(tag, classes[index.round])
