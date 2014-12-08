@@ -26,6 +26,6 @@ for test in tests:
 
 # create reports
 for test in tests:
-    subprocess.call( [ 'fl-build-report --html', test[3] ], shell=True )
+    subprocess.call( [ 'fl-build-report --html %s' % ( test[3] ) ], shell=True )
 
 print "Testing complete."
