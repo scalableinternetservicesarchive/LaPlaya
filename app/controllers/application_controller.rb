@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.html do
         # Just give a generic error message. We don't want to tell people more than they need to know.
-        redirect_to root_path, alert: 'You are not authorized to access that page'
+        render 'unauthorized', alert: 'You are not authorized to access that page', status: :unauthorized
       end
       format.js do
         head :forbidden
