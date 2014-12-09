@@ -29,6 +29,7 @@ class CPComments(LaPlayaFunkloadHelper):
         server_url = self.server_url
         self.get(server_url, description='View the homepage')
         project_url = random.choice(self.listHref(url_pattern='/projects/\d*'))
+        self.logi(str(len(project_url)))
         self.get(server_url + project_url, description='View a project')
         leave_a_comment_url = self.listHref(url_pattern='/projects/\d+/comments/new',
                                             content_pattern='Leave a comment.*')
@@ -39,9 +40,11 @@ class CPComments(LaPlayaFunkloadHelper):
         form_post_url = extract_token(self.getBody(),
                                       '<form accept-charset="UTF-8" action="',
                                       '"')
-        comment_parent_id = extract_token(self.getBody(),
-                                          '<input id="comment_parent_id" name="comment[parent_id]" type="hidden" value="',
-                                          '"')
+
+        comment_parent_id = None
+        comment_start_string = '<input id="comment_parent_id" name="comment[parent_id]" type="hidden" value="'
+        if self.getBody().find(comment_start_string) > -1:
+            comment_parent_id = extract_token(self.getBody(), comment_start_string, '"')
         params = self.makeParams()
         params += [['comment[text]', Lipsum().getParagraph(length=16)]]
         if comment_parent_id:
