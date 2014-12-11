@@ -1,0 +1,157 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Outputs": {
+        "SSH": {
+            "Description": "AppServer SSH connect string",
+            "Value": {
+                "Fn::Join": [
+                    "",
+                    [
+                        "ssh -i ",
+                        {
+                            "Ref": "TeamName"
+                        },
+                        ".pem ec2-user@",
+                        {
+                            "Fn::GetAtt": [
+                                "AppServer",
+                                "PublicDnsName"
+                            ]
+                        }
+                    ]
+                ]
+            }
+        }
+    },
+    "Parameters": {
+        "AppInstanceType": {
+            "AllowedValues": [
+                "t1.micro",
+                "m1.small",
+                "m1.medium",
+                "m1.large",
+                "m1.xlarge",
+                "m2.xlarge",
+                "m2.2xlarge",
+                "m2.4xlarge",
+                "m3.medium",
+                "m3.large",
+                "m3.xlarge",
+                "m3.2xlarge",
+                "c1.medium",
+                "c1.xlarge",
+                "c3.large",
+                "c3.xlarge",
+                "c3.2xlarge",
+                "c3.4xlarge"
+            ],
+            "Default": "t1.micro",
+            "Description": "The AppServer instance type.",
+            "Type": "String"
+        },
+        "TeamName": {
+            "AllowedValues": [
+                "Lab-App",
+                "Motley-Crew",
+                "Xup",
+                "Upvid",
+                "LaPlaya",
+                "Team-Hytta",
+                "labapp",
+                "Suppr",
+                "Compete",
+                "BaconWindshield",
+                "picShare",
+                "Gradr"
+            ],
+            "ConstraintDescription": "Must exactly match your team name as shown in your Github URL.",
+            "Description": "Your team name.",
+            "Type": "String"
+        }
+    },
+    "Resources": {
+        "AppServer": {
+            "CreationPolicy": {
+                "ResourceSignal": {
+                    "Timeout": "PT10M"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Init": {
+                    "configSets": {
+                        "default": [
+                            "packages"
+                        ]
+                    },
+                    "packages": {
+                        "packages": {
+                            "yum": {
+                                "gnuplot": [],
+                                "python27": [],
+                                "git": []
+                            }
+                        }
+                    }
+                }
+            },
+            "Properties": {
+                "IamInstanceProfile": {
+                    "Ref": "TeamName"
+                },
+                "ImageId": "ami-55a7ea65",
+                "InstanceType": {
+                    "Ref": "AppInstanceType"
+                },
+                "KeyName": {
+                    "Ref": "TeamName"
+                },
+                "SecurityGroups": [
+                    {
+                        "Ref": "TeamName"
+                    }
+                ],
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": [
+                            "",
+                            [
+                                "#!/bin/bash -v\nyum update -y aws-cfn-bootstrap\n# Helper function\nfunction error_exit {",
+                                "\n    /opt/aws/bin/cfn-signal -e 1 -r \"$1\" --stack ",
+                                {
+                                    "Ref": "AWS::StackName"
+                                },
+                                "       --resource AppServer --region ",
+                                {
+                                    "Ref": "AWS::Region"
+                                },
+                                "\n    exit 1\n}",
+                                "\n# Run cfn-init (see AWS::CloudFormation::Init)\n/opt/aws/bin/cfn-init -s ",
+                                {
+                                    "Ref": "AWS::StackName"
+                                },
+                                " -r AppServer   --region ",
+                                {
+                                    "Ref": "AWS::Region"
+                                },
+                                " || error_exit 'Failed to run cfn-init'\n# Don't require tty to run sudo\nsed -i 's/ requiretty/ !requiretty/' /etc/sudoers\nfunction user_sudo {",
+                                "\n    sudo -u ec2-user bash -lc \"$*\"\n}",
+                                "\n",
+                                "# Install python2.7 environment\neasy_install pip || error_exit 'Failure installing pip'\npip install virtualenv || error_exit 'Failure installing virtualenv'\nuser_sudo virtualenv /home/ec2-user/.py27 -p /usr/bin/python27 || error_exit 'Error creating py27 virtualenv'\necho \"source /home/ec2-user/.py27/bin/activate\" >> /home/ec2-user/.bashrc\nuser_sudo pip install funkload || error_exit 'Error installing funkload'\n",
+                                "# All is well so signal success\n/opt/aws/bin/cfn-signal -e 0 --stack ",
+                                {
+                                    "Ref": "AWS::StackName"
+                                },
+                                " --resource AppServer   --region ",
+                                {
+                                    "Ref": "AWS::Region"
+                                },
+                                "\n"
+                            ]
+                        ]
+                    }
+                }
+            },
+            "Type": "AWS::EC2::Instance"
+        }
+    }
+}
