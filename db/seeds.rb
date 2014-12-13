@@ -11,9 +11,11 @@ puts "Cleaning out old data."
 t1 = Time.now
 User.delete_all
 Project.delete_all
+ProjectLike.delete_all
 Comment.delete_all
 Gallery.delete_all
 Tag.delete_all
+Tagging.delete_all
 
 puts 'Starting seeding.'
 Dir[Rails.root.join("db/seed_user*.rb")].each {|f| require f}
