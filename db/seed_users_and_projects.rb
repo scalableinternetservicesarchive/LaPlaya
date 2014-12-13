@@ -1,5 +1,6 @@
 # Create a super user and some test users, then create projects with those users.
 @count = 0
+t1 = Time.now
 case ENV['SEED_SIZE']
   when 'mini'
     @count = 4
@@ -20,9 +21,11 @@ puts "\tCreating users and projects..."
   u = FactoryGirl.create(:user)
   (@count/2).times do
     p = FactoryGirl.create(:project, author: u)
-    User.all.each do |user|
-      p.add_like(user)
-    end
   end
 end
 
+User.all.each do |user|
+  user.liked_projects = Project.all
+end
+t2 = Time.now
+puts "Users seeding time #{t2 - t1} s"

@@ -19,7 +19,7 @@ class Project < ActiveRecord::Base
 
 
   def root_comments
-    comments.where parent_id: nil
+    comments.root_comments
   end
 
   def add_like(current_user)

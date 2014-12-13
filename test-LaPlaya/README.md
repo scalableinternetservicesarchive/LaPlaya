@@ -10,10 +10,10 @@ We've written a python script that will run all the tests, create the reports, a
 
 1. Start up a funkload instance based on the git-modified template
 2. Clone the app repo from https://github.com/scalableinternetservices/LaPlaya.git
-3. In the test-LaPlaya directory type 'chmod u+x save_and_clean_all.sh'
+3. In the test-LaPlaya directory type `chmod u+x save_and_clean_all.sh`
 4. Start up a LaPlaya app instance and get its IP address
-5. In the test-LaPlaya directory type 'python benchTest.py `<address>`' where `<address>` is the address from step 3
-6. After the tests are done, type './save_and_clean_all.sh'
+5. In the test-LaPlaya directory type `python benchTest.py <address>` where `<address>` is the address from step 3
+6. After the tests are done, type `./save_and_clean_all.sh`
 7. Repeat steps 4-6
 
 ## How to run individual tests
