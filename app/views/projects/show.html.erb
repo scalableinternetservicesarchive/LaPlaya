@@ -77,9 +77,11 @@
         <%= comment_return_link %>
 
         <% if @root_comments.any? %>
-            <div>
-              <%= render partial: 'comment', collection: @root_comments, locals: {all_comments: @all_comments} %>
-            </div>
+            <% cache([current_user, @project, 'comments']) do %>
+                <div>
+                  <%= render partial: 'comment', collection: @root_comments, locals: {all_comments: @all_comments} %>
+                </div>
+            <% end %>
         <% else %>
             <em>No comments yet</em><br/>
         <% end %>

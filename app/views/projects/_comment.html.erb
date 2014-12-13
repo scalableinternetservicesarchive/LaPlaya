@@ -15,7 +15,7 @@
         <%= link_to 'Delete', project_comment_path(comment.project, comment), class: 'btn btn-xs btn-danger', method: :delete, data: {confirm: 'Are you sure?'} if can? :destroy, comment %>
       </div>
   <% end %>
-  <% next_comments =  all_comments.select{|x| x.parent_id == comment.id} %>
+  <% next_comments = all_comments.select { |x| x.parent_id == comment.id } %>
   <% if next_comments.any? %>
       <div>
         <%= render partial: 'comment', collection: next_comments, locals: {all_comments: all_comments} %>
