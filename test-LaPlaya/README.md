@@ -4,7 +4,18 @@ This directory contains the load testing files for our project. We can have test
 
 Each test file is named `test_<something>.py` has a corresponding configuration file `<something>.conf`. The configuration file can contain metadata used by the tests, as well as funkload configuration info for running the benchmarks. 
 
-## How to run
+## Procedure for load test using all tests
+
+We've written a python script that will run all the tests, create the reports, and zip all the results and data files to be copied off the instance after testing. The procedure below shows how to use the scripts.
+
+1. Start up a funkload instance based on the git-modified template
+2. Clone the app repo from https://github.com/scalableinternetservices/LaPlaya.git
+3. Start up a LaPlaya app instance and get its IP address
+4. In the test-LaPlaya directory type 'python benchTest.py <address>' where <address> is the address from step 3
+5. After the tests are done, type './save_and_clean_all.sh'
+6. Repeat steps 3-5
+
+## How to run individual tests
 
 To run *just* the tests
 
@@ -12,7 +23,7 @@ To run *just* the tests
 fl-run-test test_<something>.py
 ```
 
-To run the performance benchmarks
+To run the individual performance benchmarks
 
 ```
 fl-run-bench test_<something>.py <Class_name>.<test_case>

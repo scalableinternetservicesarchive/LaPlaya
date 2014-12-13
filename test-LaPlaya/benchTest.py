@@ -12,17 +12,21 @@ tests = [
     [ "test_CPCreateUser.py", "CPCreateUser", "test_logged_out_signup_path", "cp-createuser-bench.xml" ],
     [ "test_CPComments.py", "CPComments", "test_readonly_view_comment", "cp-comments-bench.xml" ],
     [ "test_CPShowProjects.py", "CPShowProjects", "test_readonly_view_projects", "cp-showprojects-bench.xml" ],
-    [ "test_CPHearts.py", "CPHearts", "test_heart_projects", "cp-hearts-bench.xml" ]
+    #[ "test_CPHearts.py", "CPHearts", "test_heart_projects", "cp-hearts-bench.xml" ]
     ]
 
 # run tests
 for test in tests:
-    print '  Running %s test' % (test[1])
+    cmd = ""
 
     if serverURL == None:
-	subprocess.call( [ 'fl-run-bench %s %s.%s' % ( test[0], test[1], test[2]) ], shell=True )
+        cmd = 'fl-run-bench %s %s.%s' % ( test[0], test[1], test[2])
     else:
-	subprocess.call( [ 'fl-run-bench -u %s %s %s.%s' % ( serverURL, test[0], test[1], test[2]) ], shell=True )
+        cmd = 'fl-run-bench -u http://%s/ %s %s.%s' % ( serverURL, test[0], test[1], test[2])
+
+    print '*** Running: %s ***' % (cmd)
+    subprocess.call( [ cmd ], shell=True )
+
 
 # create reports
 for test in tests:
