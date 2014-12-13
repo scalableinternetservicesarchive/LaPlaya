@@ -15,15 +15,17 @@ tests = [
     [ "test_CPShowProjects.py", "CPShowProjects", "test_readonly_view_projects", "cp-showprojects-bench.xml" ],
     [ "test_CPHearts.py", "CPHearts", "test_heart_projects", "cp-hearts-bench.xml" ]
     ]
+cycles = "20" # format for multiple cycles "10:100:1000"
+duration = "60"
 
 # run tests
 for test in tests:
     cmd = ""
 
     if serverURL == None:
-        cmd = 'fl-run-bench %s %s.%s' % ( test[0], test[1], test[2])
+        cmd = 'fl-run-bench -c %s -D %s %s %s.%s' % ( cycles, duration, test[0], test[1], test[2])
     else:
-        cmd = 'fl-run-bench -u http://%s/ %s %s.%s' % ( serverURL, test[0], test[1], test[2])
+        cmd = 'fl-run-bench -u http://%s/ -c %s -D %s %s %s.%s' % ( serverURL, cycles, duration, test[0], test[1], test[2])
 
     print '*** Testing: %s.%s ***' % (test[1], test[2])
     subprocess.call( [ cmd ], shell=True )
