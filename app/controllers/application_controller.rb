@@ -24,7 +24,8 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.html do
         # Just give a generic error message. We don't want to tell people more than they need to know.
-        render 'unauthorized', alert: 'You are not authorized to access that page', status: :unauthorized
+        flash.now[:alert] = 'You are not authorized to access that page'
+        render 'unauthorized', status: :unauthorized
       end
       format.js do
         head :forbidden
