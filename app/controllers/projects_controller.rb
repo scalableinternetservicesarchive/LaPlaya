@@ -64,7 +64,7 @@ class ProjectsController < ApplicationController
   def show
     @liked = current_user && @project.liking_users.include?(current_user)
 
-    @all_comments = @project.comments
+    @all_comments = @project.comments.includes(:author)
     @root_comments = @all_comments.root_comments
     if params[:comment_id]
       @root_comments = [@project.comments.find(params[:comment_id])]
