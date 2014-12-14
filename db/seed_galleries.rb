@@ -8,7 +8,9 @@ case ENV['SEED_SIZE']
   when 'medium'
     @count = 30
   when 'large'
-    @count = 100
+    @count = 10000
+  when 'xlarge'
+    @count = 100000
   else
     puts "Defaulting to no seed data"
     @count = 0
@@ -16,7 +18,7 @@ end
 
 puts "\tCreating galleries..."
 users = User.all.to_a.each
-@count.times do
+(@count/5).times do
   def next_user(user_list)
     begin
       user_list.next

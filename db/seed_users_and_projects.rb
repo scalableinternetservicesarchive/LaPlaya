@@ -9,23 +9,42 @@ case ENV['SEED_SIZE']
   when 'medium'
     @count = 30
   when 'large'
-    @count = 100
+    @count = 10000
+  when 'xlarge'
+    @count = 100000
   else
     puts "Defaulting to no seed data"
     @count = 0
 end
 
+# Create users
 User.create(username: 'superuser', email: 'super_user@example.com', password: 'helloworld', password_confirmation: 'helloworld', super_admin: true)
 puts "\tCreating users and projects..."
-@count.times do
+@num_users =  @count > 30 ? 1000 : @count
+@num_users.times do
   u = FactoryGirl.create(:user)
-  (@count/2).times do
-    p = FactoryGirl.create(:project, author: u)
+end
+
+# helper function
+@users = User.all.to_a.each
+def next_user(user_list)
+  begin
+    user_list.next
+  rescue StopIteration => ex
+    user_list.rewind
+    next_user(user_list)
   end
 end
 
+# Create Projects
+@count.times do
+  p = FactoryGirl.create(:project, author: next_user(@users))
+end
+
+# Create likes
+# Each user will like 100 projects
 User.all.each do |user|
-  user.liked_projects = Project.all
+  user.liked_projects = Project.all.sample(100)
 end
 t2 = Time.now
-puts "Users seeding time #{t2 - t1} s"
+puts "Users + Projects + Likes seeding time #{t2 - t1} s"
