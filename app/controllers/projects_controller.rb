@@ -69,8 +69,6 @@ class ProjectsController < ApplicationController
     if params[:comment_id]
       @root_comments = [@project.comments.find(params[:comment_id])]
     end
-
-    @related_works = sample_gallery_items
   end
 
   def edit

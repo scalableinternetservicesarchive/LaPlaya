@@ -93,22 +93,3 @@
   <!-- /row -->
 </div>
 <!-- /container -->
-
-<!-- *******************************V**********************************************************************************
- PORTFOLIO SECTION
- ***************************************************************************************************************** -->
-<div id="portfoliowrap">
-  <h3>Related Works.</h3>
-  <%= solid_portfolio do %>
-      <%= @related_works.each do |work| %>
-          <%= solid_portfolio_item work.title,
-                                   work.thumbnail,
-                                   work.thumbnail,
-                                   work.url
-          %>
-      <% end %>
-  <% end %>
-</div>
-<!--/Portfoliowrap -->
-	 
-	 	 
