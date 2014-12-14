@@ -14,6 +14,10 @@ class Comment < ActiveRecord::Base
 
   validate :parent_in_same_project
 
+  def children_within_array(array)
+    array.select{|x| x.parent_id = self.id}
+  end
+
 
   private
   def parent_in_same_project
