@@ -7,7 +7,7 @@ FactoryGirl.define do
     title { Faker::Lorem.sentence }
     about { Faker::Lorem.paragraph }
     instructions { Faker::Lorem.paragraph }
-    thumbnail { "#{Faker::Avatar.image(Faker::Lorem.words.join, "600x450")}&bgset=#{%w(bg1 bg2).sample}" }
+    thumbnail { "http://cs290.s3.amazonaws.com/LaPlaya/pics/#{rand(1..25)}.png" }
 
     transient do
       tags_count 0
