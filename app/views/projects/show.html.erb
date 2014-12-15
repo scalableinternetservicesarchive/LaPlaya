@@ -71,19 +71,20 @@
       <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-warning' if can? :edit, @project %>
       <%= link_to 'Destroy', @project, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} if can? :destroy, @project %>
 
-      <div id="comments">
+      <div id="comments" <%= id_string_for_user if current_user %>>
         <h3>Comments</h3>
 
         <%= comment_return_link %>
 
-        <% if @root_comments.any? %>
-            <% cache([current_user, @project, 'comments']) do %>
+        <% cache([@project, 'comments']) do %>
+            <% @root_comments ||= @all_comments.root_comments %>
+            <% if @root_comments.any? %>
                 <div>
                   <%= render partial: 'comment', collection: @root_comments, locals: {all_comments: @all_comments} %>
                 </div>
+            <% else %>
+                <em>No comments yet</em><br/>
             <% end %>
-        <% else %>
-            <em>No comments yet</em><br/>
         <% end %>
         <br/>
         <%= link_to 'Leave a comment', new_project_comments_path(@project), class: 'btn btn-primary btn-m' if can? :create, Comment %>

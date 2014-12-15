@@ -1,4 +1,4 @@
-<div class="comment">
+<div class="comment" <%= "data-owner-id=\"#{comment.author.id}\"".html_safe %>>
   <% if comment.deleted %>
       <div>
         <i> Deleted </i>
@@ -11,11 +11,11 @@
       <div><%= comment.text %></div>
       <div>
         <%= link_to 'Permalink', project_comment_path(comment.project, comment), class: 'btn btn-xs btn-default' %>
-        <%= link_to 'Reply', new_project_comments_path(comment.project, comment), class: 'btn btn-xs btn-default' if can? :create, Comment %>
-        <%= link_to 'Delete', project_comment_path(comment.project, comment), class: 'btn btn-xs btn-danger', method: :delete, data: {confirm: 'Are you sure?'} if can? :destroy, comment %>
+        <%= link_to 'Reply', new_project_comments_path(comment.project, comment), class: 'btn btn-xs btn-default show-logged-in hidden' %>
+        <%= link_to 'Delete', project_comment_path(comment.project, comment), class: 'btn btn-xs btn-danger show-for-owner hidden', method: :delete, data: {confirm: 'Are you sure?'} %>
       </div>
   <% end %>
-  <% next_comments =  comment.children_within_array(all_comments) %>
+  <% next_comments = comment.children_within_array(all_comments) %>
   <% if next_comments.any? %>
       <div>
         <%= render partial: 'comment', collection: next_comments, locals: {all_comments: all_comments} %>
