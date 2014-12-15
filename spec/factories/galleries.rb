@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :gallery do
     title { Faker::Lorem.sentence(2, false, 4) }
     author
-    thumbnail { "#{Faker::Avatar.image(Faker::Lorem.words.join, "600x450")}&bgset=#{%w(bg1 bg2).sample}" }
+    thumbnail { "http://cs290.s3.amazonaws.com/LaPlaya/pics/#{rand(1..25)}.png" }
 
 
     transient do

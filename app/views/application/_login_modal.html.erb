@@ -21,33 +21,6 @@
                                },
                                icon_class: 'fa fa-facebook',
                                link_text: 'with Facebook'} %>
-            <%= render partial: 'login_button',
-                       locals: {
-                               path: user_omniauth_authorize_path(:google_oath2),
-                               link_options: {
-                                       class: 'btn btn-block btn-social btn-google-plus',
-                                       'data-popup' => true
-                               },
-                               icon_class: 'fa fa-google-plus',
-                               link_text: 'with Google'} %>
-            <%= render partial: 'login_button',
-                       locals: {
-                               path: '#',
-                               link_options: {
-                                       class: 'btn btn-block btn-social btn-github',
-                                       'data-popup' => true
-                               },
-                               icon_class: 'fa fa-github',
-                               link_text: 'with Github'} %>
-            <%= render partial: 'login_button',
-                       locals: {
-                               path: '#',
-                               link_options: {
-                                       class: 'btn btn-block btn-social btn-clever',
-                                       'data-popup' => true
-                               },
-                               icon_class: 'icon-laplaya-clever',
-                               link_text: 'with Clever'} %>
           </div>
           <hr>
           <div class="signin">
