@@ -263,3 +263,12 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 end
+
+if Rails.env.production?
+  OmniAuth.config.full_host = lambda do |env|
+    scheme         = env['rack.url_scheme']
+    local_host     = env['HTTP_HOST']
+    forwarded_host = env['HTTP_X_FORWARDED_HOST']
+    forwarded_host.blank? ? "#{scheme}://#{local_host}" : "#{scheme}://#{forwarded_host}"
+  end
+end
